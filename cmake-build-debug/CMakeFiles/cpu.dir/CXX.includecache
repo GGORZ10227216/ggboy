@@ -6,31 +6,27 @@
 
 #IncludeRegexTransform: 
 
-.././include/LR35902_All.h
-LR35902_LD.h
+.././include/Cartridge.h
+stdint.h
 -
-LR35902_Calc.h
--
-LR35902_Routine.h
--
-LR35902_Stack.h
--
-LR35902_Misc.h
+string
 -
 
-.././include/LR35902_Calc.h
-
-.././include/LR35902_LD.h
-cstdio
+.././include/EmuFramework.h
+cpu.h
+-
+MMU.h
+-
+string
+-
+Cartridge.h
 -
 
-.././include/LR35902_Misc.h
-cstdio
+.././include/MMU.h
+stdint.h
 -
-
-.././include/LR35902_Routine.h
-
-.././include/LR35902_Stack.h
+Cartridge.h
+-
 
 .././include/RegEnum.h
 
@@ -56,13 +52,13 @@ cstring
 RegEnum.h
 -
 
-/home/orzgg/CLionProjects/cpu/src/cpu.cpp
-cpu.h
-/home/orzgg/CLionProjects/cpu/src/cpu.h
-LR35902_All.h
+C:/Users/ORZGG/cpu/src/EmuFramework.cpp
+EmuFramework.h
+C:/Users/ORZGG/cpu/src/EmuFramework.h
+iostream
 -
-cstring
+iomanip
 -
-cpu_state.h
+Cartridge.h
 -
 

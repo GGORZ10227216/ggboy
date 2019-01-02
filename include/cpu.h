@@ -18,8 +18,6 @@ class LR35902 {
     uint8_t* memory = NULL ;
     CPU_status currentStatus ;
 
-    static void (*unprefixed_opcode[ 256 ])(void)  ;
-
     inline uint16_t Get_AF() {
         return currentStatus.regs[ A ] << 8 | currentStatus.regs[ F ] ;
     }
@@ -74,11 +72,9 @@ class LR35902 {
     const uint16_t IF = 0xFF0F ;
 };
 
-extern LR35902* CPU_obj ;
-
-#define CPU_regs CPU_obj->currentStatus.regs
-#define CPU_SP   CPU_obj->currentStatus.SP
-#define CPU_PC   CPU_obj->currentStatus.PC
+#define CPU_regs currentStatus.regs
+#define CPU_SP   currentStatus.SP
+#define CPU_PC   currentStatus.PC
 
 enum RegAddr{
     P1 = 0xFF00 , SB = 0xFF01, SC = 0xFF02, DIV = 0xFF04, TIMA = 0xFF05, TMA = 0xFF06, TAC = 0xFF07,

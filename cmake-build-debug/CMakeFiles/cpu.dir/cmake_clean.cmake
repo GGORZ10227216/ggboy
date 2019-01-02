@@ -1,14 +1,16 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/cpu.dir/main.cpp.o"
-  "CMakeFiles/cpu.dir/src/cpu.cpp.o"
-  "CMakeFiles/cpu.dir/src/LR35902_Calc.cpp.o"
-  "CMakeFiles/cpu.dir/src/LR35902_LD.cpp.o"
-  "CMakeFiles/cpu.dir/src/LR35902_Misc.cpp.o"
-  "CMakeFiles/cpu.dir/src/LR35902_Routine.cpp.o"
-  "CMakeFiles/cpu.dir/src/LR35902_Stack.cpp.o"
-  "CMakeFiles/cpu.dir/src/CPU_status.cpp.o"
+  "CMakeFiles/cpu.dir/main.cpp.obj"
+  "CMakeFiles/cpu.dir/src/cpu.cpp.obj"
+  "CMakeFiles/cpu.dir/src/CPU_status.cpp.obj"
+  "CMakeFiles/cpu.dir/src/MBC.cpp.obj"
+  "CMakeFiles/cpu.dir/src/Cartridge.cpp.obj"
+  "CMakeFiles/cpu.dir/src/EmuFramework.cpp.obj"
+  "CMakeFiles/cpu.dir/src/MBC1.cpp.obj"
+  "CMakeFiles/cpu.dir/MBC2.cpp.obj"
   "cpu.pdb"
-  "cpu"
+  "cpu.exe"
+  "cpu.exe.manifest"
+  "libcpu.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

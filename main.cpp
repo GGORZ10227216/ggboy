@@ -1,12 +1,11 @@
 #include <cstdio>
-#include <cpu.h>
+#include <EmuFramework.h>
 
 using namespace std;
 
-LR35902* CPU_obj = nullptr ;
-
-int main() {
-    CPU_obj = new LR35902() ;
-    printf( "%d %d\n", ( ( 0xa5 & 0x6c ) == 0x6c ), ( 0xa5 != 0) ) ;
+int main( int argc, char* argv[] ) {
+    EmuFramework emu( argc, argv ) ;
+    emu.StartUI() ;
+    system( "pause" ) ;
     return 0;
 }

@@ -8,10 +8,7 @@ set(CMAKE_CXX_STANDARD 14)
 #Thus my the path to my domain folder:
 set(HEADER_FILES ./include)
 set(SOURCE_FILES ./src/cpu.cpp
-                 ./src/LR35902_Calc.cpp
-                 ./src/LR35902_LD.cpp
-                 ./src/LR35902_Misc.cpp
-        src/LR35902_Routine.cpp include/LR35902_Stack.h src/LR35902_Stack.cpp include/cpu_state.h src/CPU_status.cpp)
+        include/cpu_state.h src/CPU_status.cpp src/MBC.cpp include/MBC.h src/Cartridge.cpp include/Cartridge.h include/errorCode.h src/EmuFramework.cpp include/EmuFramework.h src/MBC1.cpp include/MBC1.h src/MBC2.cpp include/MBC2.h include/MBC_header.h)
 
 #Include the directories and now your cpp files will recognize your headers
 include_directories(${HEADER_FILES})
