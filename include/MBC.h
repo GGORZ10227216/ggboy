@@ -36,6 +36,7 @@ namespace lr35902 {
     class MBC {
     public :
         MBC( Cartridge* rom );
+
         virtual uint8_t ReadMemory( const uint16_t addr ) ;
         virtual void WriteMemory( const uint16_t addr, const uint8_t value ) ;
 
@@ -43,6 +44,12 @@ namespace lr35902 {
         uint8_t* ramBanks ;
         uint8_t* romBanks ;
         uint8_t* mainMemory ;
+    public:
+        uint8_t *getMainMemory() const;
+        void Debug_ReadMemDump( char* dumpFilePath ) ;
+    protected:
+
+        void DMA_Write( uint8_t addr ) ;
 
         uint8_t currentRomBank = 1 ;
         uint8_t currentRamBank = 0 ;
@@ -52,7 +59,6 @@ namespace lr35902 {
         static const uint16_t romBankSize = ROM_SWAP_END - ROM_SWAP_BEG + 1 ;
         static const uint16_t ramBankSize = EXT_RAM_END - EXT_RAM_BEG + 1 ;
     };
-
 }
 
 #endif //CPU_MMU_H

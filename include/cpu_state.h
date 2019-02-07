@@ -16,7 +16,7 @@ struct CPU_status {
     uint16_t SP, PC ;
     uint32_t deltaCycle = 0 ;
 
-    bool IME, pause = false, afterReturn = false ;
+    bool IME, pause = false, pc_jumping = false ;
 
     CPU_status() ;
     CPU_status( const LR35902* srcCpu ) ;

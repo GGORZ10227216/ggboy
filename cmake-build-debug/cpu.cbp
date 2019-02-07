@@ -8,131 +8,139 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/ORZGG/cpu/cmake-build-debug"/>
+				<Option working_dir="/home/orzgg/Documents/cpu/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="cpu">
-				<Option output="C:/Users/ORZGG/cpu/cmake-build-debug/cpu.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/ORZGG/cpu/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/ORZGG/cpu/./include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include/c++/6.2.0"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include/c++/6.2.0/x86_64-w64-mingw32"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include/c++/6.2.0/backward"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include-fixed"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu"/>
-					<CompileFile command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="cpu/fast">
-				<Option output="C:/Users/ORZGG/cpu/cmake-build-debug/cpu.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/ORZGG/cpu/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/ORZGG/cpu/./include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include/c++/6.2.0"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include/c++/6.2.0/x86_64-w64-mingw32"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include/c++/6.2.0/backward"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../include"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/include-fixed"/>
-					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu/fast"/>
-					<CompileFile command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/ORZGG/cpu/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/ORZGG/cpu/cmake-build-debug"/>
+				<Option working_dir="/home/orzgg/Documents/cpu/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/TDM-GCC-64/bin/mingw32-make.exe -f &quot;C:/Users/ORZGG/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpu">
+				<Option output="/home/orzgg/Documents/cpu/cmake-build-debug/cpu" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/orzgg/Documents/cpu/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/orzgg/Documents/cpu/./include"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cpu/fast">
+				<Option output="/home/orzgg/Documents/cpu/cmake-build-debug/cpu" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/orzgg/Documents/cpu/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/orzgg/Documents/cpu/./include"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/orzgg/Documents/cpu/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/Documents/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/ORZGG/cpu/MBC2.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/include/Cartridge.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/MBC2.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/EmuFramework.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/include/Cartridge.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/LCD_Controller.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/include/EmuFramework.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/MBC.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/include/MBC.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/MBC1.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/include/MBC1.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/MBC2.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/include/MBC_header.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/MBC_header.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/include/cpu_state.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/cpu_state.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/include/errorCode.h">
+		<Unit filename="/home/orzgg/Documents/cpu/include/errorCode.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/main.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/main.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/src/CPU_status.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/src/CPU_status.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/src/Cartridge.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/src/Cartridge.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/src/EmuFramework.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/src/EmuFramework.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/src/MBC.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/src/LCD_Controller.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/src/MBC1.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/src/MBC.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/src/cpu.cpp">
+		<Unit filename="/home/orzgg/Documents/cpu/src/MBC1.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="C:/Users/ORZGG/cpu/CMakeLists.txt">
+		<Unit filename="/home/orzgg/Documents/cpu/src/MBC2.cpp">
+			<Option target="cpu"/>
+		</Unit>
+		<Unit filename="/home/orzgg/Documents/cpu/src/cpu.cpp">
+			<Option target="cpu"/>
+		</Unit>
+		<Unit filename="/home/orzgg/Documents/cpu/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

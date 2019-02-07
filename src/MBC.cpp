@@ -4,6 +4,8 @@
 
 #include "MBC.h"
 #include <string.h>
+#include <iostream>
+#include <fstream>
 
 using namespace lr35902 ;
 
@@ -28,6 +30,9 @@ void MBC::WriteMemory(const uint16_t addr, const uint8_t value) {
     else if ( ( addr >= 0xFEA0 ) && (addr < 0xFEFF) ) {
         // this area is restricted
     } // else if
+    else if ( addr == 0xFF46 ) {
+        DMA_Write( value ) ;
+    } // else if
     else {
         // no control needed over this area so write to memory
         mainMemory[ addr ] = value ;
@@ -43,4 +48,26 @@ uint8_t MBC::ReadMemory(const uint16_t addr) {
     } // if
     else
         return mainMemory[ addr ] ;
+}
+
+void MBC::DMA_Write(uint8_t addr) {
+    uint16_t srcAddr = addr << 8 ;
+
+    for ( int i = 0 ; i < 0x8c ; ++i )
+        WriteMemory( 0xFE00 + i, ReadMemory( srcAddr ) ) ;
+}
+
+void MBC::Debug_ReadMemDump( char* dumpFilePath ) {
+    std::fstream dumpFile( dumpFilePath, std::fstream::in | std::fstream::binary ) ;
+    if ( dumpFile.is_open() ) {
+        char buf = 0 ;
+        dumpFile.read(reinterpret_cast<char*>(mainMemory), 0x10000 ) ;
+        std::cout << "Read mem dump file:" << dumpFilePath << " done." << std::endl ;
+    } // if
+    else
+        std::cout << "Read dump file failed." << std::endl ;
+}
+
+uint8_t *MBC::getMainMemory() const {
+    return mainMemory;
 }

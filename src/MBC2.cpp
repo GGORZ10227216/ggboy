@@ -60,6 +60,9 @@ void MBC2::WriteMemory(const uint16_t addr, const uint8_t value) {
     else if ( ( addr >= 0xFEA0 ) && (addr < 0xFEFF) ) {
         // this area is restricted
     } // else if
+    else if ( addr == 0xFF46 ) {
+        DMA_Write( value ) ;
+    } // else if
     else {
         // no control needed over this area so write to memory
         mainMemory[ addr ] = value ;

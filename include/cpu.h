@@ -9,13 +9,15 @@
 #include <RegEnum.h>
 
 #include <cpu_state.h>
+#include <MBC.h>
+
+using namespace lr35902 ;
 
 class LR35902 {
   public:
-    LR35902();
+    LR35902() ;
     virtual ~LR35902();
 
-    uint8_t* memory = NULL ;
     CPU_status currentStatus ;
 
     inline uint16_t Get_AF() {
@@ -49,6 +51,10 @@ class LR35902 {
         currentStatus.regs[ L ] = reinterpret_cast<uint8_t*> ( &val )[ 0 ] ;
     }
 
+    static inline bool TEST_BIT( uint8_t byte, uint8_t bitPos ) {
+        return byte & ( 1 << bitPos ) ;
+    }
+
     inline void Set_SP( uint16_t val ) { currentStatus.SP = val ; }
 
     inline bool Get_ZeroFlag() { return 0b10000000 & currentStatus.regs[ F ] ; }
@@ -65,16 +71,31 @@ class LR35902 {
     inline void Clear_HCFlag()   { currentStatus.regs[ F ] &= 0b11011111 ; }
     inline void Clear_CFlag()    { currentStatus.regs[ F ] &= 0b11101111 ; }
 
-    bool InitMemory( int romSize, int ramSize ) ;
+    inline uint16_t Fetch_16bitByMMU( uint16_t addr ) {
+        uint16_t value = 0 ;
+        uint8_t* hilo = (uint8_t*) &value ;
+        hilo[ LOW ] = _mmu->ReadMemory( addr ) ;
+        hilo[ HIGH ] = _mmu->ReadMemory( addr + 1 )  ;
+        return value ;
+    } // Fetch_16bitByMMU()
+
+    inline uint8_t MEMREAD(uint16_t addr) { return _mmu->ReadMemory( addr ) ; }
+    inline void MEMWRITE(uint16_t addr, uint8_t data) { _mmu->WriteMemory( addr, data ) ; }
+
     void ResumeFromState( const CPU_status cs ) ;
     void ExecuteCurrentInstruction() ;
-    const uint16_t IE = 0xFFFF ;
-    const uint16_t IF = 0xFF0F ;
+    void CheckInterrupts() ;
+    void DoInterrupt( uint8_t irtNum ) ;
+
+private:
+    MBC* _mmu = nullptr ;
+
 };
 
 #define CPU_regs currentStatus.regs
 #define CPU_SP   currentStatus.SP
 #define CPU_PC   currentStatus.PC
+#define memory _mmu->getMainMemory()
 
 enum RegAddr{
     P1 = 0xFF00 , SB = 0xFF01, SC = 0xFF02, DIV = 0xFF04, TIMA = 0xFF05, TMA = 0xFF06, TAC = 0xFF07,

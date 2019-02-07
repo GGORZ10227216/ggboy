@@ -8,9 +8,12 @@ set(CMAKE_CXX_STANDARD 14)
 #Thus my the path to my domain folder:
 set(HEADER_FILES ./include)
 set(SOURCE_FILES ./src/cpu.cpp
-        include/cpu_state.h src/CPU_status.cpp src/MBC.cpp include/MBC.h src/Cartridge.cpp include/Cartridge.h include/errorCode.h src/EmuFramework.cpp include/EmuFramework.h src/MBC1.cpp include/MBC1.h src/MBC2.cpp include/MBC2.h include/MBC_header.h)
+        include/cpu_state.h src/CPU_status.cpp src/MBC.cpp include/MBC.h src/Cartridge.cpp include/Cartridge.h include/errorCode.h src/EmuFramework.cpp include/EmuFramework.h src/MBC1.cpp include/MBC1.h src/MBC2.cpp include/MBC2.h include/MBC_header.h src/LCD_Controller.cpp include/LCD_Controller.h)
 
 #Include the directories and now your cpp files will recognize your headers
 include_directories(${HEADER_FILES})
 
+INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS})
+
 add_executable(cpu main.cpp ${SOURCE_FILES})
+TARGET_LINK_LIBRARIES(cpu -lSDL2main -lSDL2)
