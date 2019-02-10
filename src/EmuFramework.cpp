@@ -105,28 +105,25 @@ void EmuFramework::StartEmu() {
     InitSDL_TextureWindow( cartridge->getRomName().c_str() ) ;
     Render = &(EmuFramework::RenderSDL_Texture) ;
 
-    mmu->Debug_ReadMemDump( "/home/orzgg/Documents/cpu/bgbtest2.dump" ) ; // For Graphics debug
-    timespec inst ;
-    std::stringstream ss ;
+    // mmu->Debug_ReadMemDump( "/home/orzgg/Documents/cpu/bgbtest2.dump" ) ; // For Graphics debug
 
     int i = 0 ;
     while (running) {
         UI_EventPolling( running ) ;
-        lcd->Update( 4 ) ;
+        // lcd->Update( 4 ) ;
         //std::cout << seconds << std::endl ;
         // EmuFramework::Render() ; // for testing
-        /*
         cpu->ExecuteCurrentInstruction() ;
         UpdateTimer() ;
-        // UpdateGraphics() ;
         cpu->CheckInterrupts() ;
+        lcd->Update( cpu->currentStatus.deltaCycle ) ;
+        // EmuFramework::Render() ;
 
         elapsedCycle += cpu->currentStatus.deltaCycle ;
         if ( elapsedCycle >= cyclePerFrame ) {
             elapsedCycle = 0 ;
             // Render() ;
         } // if
-         */
     } // while
 
     StopEmu() ;

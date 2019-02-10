@@ -843,23 +843,7 @@ void LR35902::ExecuteCurrentInstruction() {
         }   break ;
         case 0xC2 : case 0xCA : case 0xD2 : case 0xDA : {
             /* JP cc,  nn */
-            bool condition = false ;
-            switch ( opcode & 0b00011000 ) {
-                case 0x00 :
-                    condition = !Get_ZeroFlag() ;
-                    break ;
-                case 0x08 :
-                    condition = Get_ZeroFlag() ;
-                    break ;
-                case 0x10 :
-                    condition = !Get_CFlag() ;
-                    break ;
-                case 0x18 :
-                    condition = Get_CFlag() ;
-                    break ;
-            } // switch
-
-            if ( condition ) {
+            if ( GetJumpCondition( opcode ) ) {
                 CPU_PC = Fetch_16bitByMMU( ++CPU_PC ) ;
                 currentStatus.pc_jumping = true ;
                 currentStatus.deltaCycle = 16 ;
@@ -869,7 +853,6 @@ void LR35902::ExecuteCurrentInstruction() {
                 currentStatus.deltaCycle = 12 ;
             } // else
 
-            ++ CPU_PC ;
         }   break ;
         case 0x18 :
             /* JR e */
@@ -878,31 +861,17 @@ void LR35902::ExecuteCurrentInstruction() {
             break ;
         case 0x20 : case 0x28 : case 0x30 : case 0x38 : {
             /* JR cc, e */
-            bool condition = false ;
-            switch ( opcode & 0b00011000 ) {
-                case 0x00 :
-                    condition = !Get_ZeroFlag() ;
-                    break ;
-                case 0x08 :
-                    condition = Get_ZeroFlag() ;
-                    break ;
-                case 0x10 :
-                    condition = !Get_CFlag() ;
-                    break ;
-                case 0x18 :
-                    condition = Get_CFlag() ;
-                    break ;
-            } // switch
-
-            if ( condition ) {
-                CPU_PC = CPU_PC + static_cast<int8_t>( MEMREAD(++CPU_PC) ) ;
+            int8_t offset = static_cast<int8_t>( MEMREAD(CPU_PC + 1) ) + 2 ;
+            if ( GetJumpCondition( opcode ) ) {
+                CPU_PC += offset ;
                 currentStatus.pc_jumping = true ;
                 currentStatus.deltaCycle = 12 ;
             } // if
             else {
-                ++CPU_PC ;
+                ++ CPU_PC ;
                 currentStatus.deltaCycle = 8 ;
             } // else
+
         }   break ;
         case 0xE9 :
             /* JP HL */

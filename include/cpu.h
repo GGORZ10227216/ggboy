@@ -79,6 +79,20 @@ class LR35902 {
         return value ;
     } // Fetch_16bitByMMU()
 
+    inline bool GetJumpCondition( uint8_t opcode ) {
+        switch ( opcode & 0b00011000 ) {
+            case 0x00 :
+                return !Get_ZeroFlag() ;
+            case 0x08 :
+                return  Get_ZeroFlag() ;
+            case 0x10 :
+                return  !Get_CFlag() ;
+            case 0x18 :
+                return  Get_CFlag() ;
+        } // switch
+    } //
+
+
     inline uint8_t MEMREAD(uint16_t addr) { return _mmu->ReadMemory( addr ) ; }
     inline void MEMWRITE(uint16_t addr, uint8_t data) { _mmu->WriteMemory( addr, data ) ; }
 
