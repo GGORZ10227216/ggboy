@@ -1,4 +1,4 @@
-# Install script for directory: /home/orzgg/Documents/cpu
+# Install script for directory: /home/orzgg/CLionProjects/cpu
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/orzgg/Documents/cpu/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/orzgg/CLionProjects/cpu/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -7,6 +7,7 @@
 #include <string>
 #include <Cartridge.h>
 #include <LCD_Controller.h>
+
 #include <SDL2/SDL.h>
 
 #ifndef CPU_EMUFRAMEWORK_H
@@ -19,7 +20,21 @@ class LCD_Controller ;
 class EmuFramework {
 public :
     typedef void (*RenderMethod)();
+
+    enum {
+        UP       = 0b00000100,
+        DOWN     = 0b00001000,
+        LEFT     = 0b00000010,
+        RIGHT    = 0b00000001,
+        START    = 0b10000000,
+        SEL      = 0b01000000,
+        A        = 0b00010000,
+        B        = 0b00100000
+    } ;
+
     EmuFramework( int argc, char* argv[] ) ;
+
+    static uint8_t inputStatus ;
     void StartUI() ;
     bool LoadRom( const char* romPath ) ;
     void StartEmu() ;
@@ -27,21 +42,23 @@ public :
     void PauseEmu() ;
     void Reset() ;
 
-    static MBC* GetMMU() { return mmu ; }
+    static MBC& GetMMU() { return *(mmu.get()) ; }
     static RenderMethod Render ;
 
-    void UI_EventPolling( bool& running ) ;
+    static void UI_EventPolling( bool& running ) ;
     static void StopEmu() ;
 
     static inline void RequestInterrupt( uint8_t reqNum ) {
         mmu->getMainMemory()[ IF ] |= 1 << reqNum ;
     } // RequestInterrupt()
 
+    // static std::fstream stausLog ;
+
     virtual ~EmuFramework();
 
 private :
     LR35902* cpu = nullptr ;
-    static MBC* mmu ;
+    static std::unique_ptr<MBC> mmu ;
 
     LCD_Controller* lcd ;
     Cartridge* cartridge = nullptr ;
@@ -50,14 +67,20 @@ private :
     static SDL_Renderer* renderer ;
     static SDL_Texture* frame  ;
 
-    SDL_Event e ;
+    static SDL_Event e ;
 
     int _argc ;
     char** _argv ;
 
     uint16_t divCounter = 0 ;
     static uint8_t* frameBuffer ;
+    static const uint8_t* keyboardStatus ;
     uint32_t thisRoundCycle = 4096 ;
+
+    static uint64_t last ;
+    static uint64_t now ;
+
+    static bool running ;
 
     void UpdateTimer() ;
     void InitMBC() ;
@@ -70,6 +93,6 @@ private :
     const static uint8_t gbLCD_Y = 144 ;
 };
 
-#define MAINMEM EmuFramework::GetMMU()->getMainMemory()
+#define MAINMEM EmuFramework::GetMMU().getMainMemory()
 #define nSecPerCycle 238
 #endif //CPU_EMUFRAMEWORK_H

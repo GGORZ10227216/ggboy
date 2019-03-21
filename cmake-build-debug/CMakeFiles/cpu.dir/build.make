@@ -43,10 +43,10 @@ RM = /snap/clion/61/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/orzgg/Documents/cpu
+CMAKE_SOURCE_DIR = /home/orzgg/CLionProjects/cpu
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/orzgg/Documents/cpu/cmake-build-debug
+CMAKE_BINARY_DIR = /home/orzgg/CLionProjects/cpu/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cpu.dir/depend.make
@@ -59,120 +59,120 @@ include CMakeFiles/cpu.dir/flags.make
 
 CMakeFiles/cpu.dir/main.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpu.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/main.cpp.o -c /home/orzgg/Documents/cpu/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpu.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/main.cpp.o -c /home/orzgg/CLionProjects/cpu/main.cpp
 
 CMakeFiles/cpu.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/main.cpp > CMakeFiles/cpu.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/main.cpp > CMakeFiles/cpu.dir/main.cpp.i
 
 CMakeFiles/cpu.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/main.cpp -o CMakeFiles/cpu.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/main.cpp -o CMakeFiles/cpu.dir/main.cpp.s
 
 CMakeFiles/cpu.dir/src/cpu.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/cpu.cpp.o: ../src/cpu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cpu.dir/src/cpu.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/cpu.cpp.o -c /home/orzgg/Documents/cpu/src/cpu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cpu.dir/src/cpu.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/cpu.cpp.o -c /home/orzgg/CLionProjects/cpu/src/cpu.cpp
 
 CMakeFiles/cpu.dir/src/cpu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/cpu.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/cpu.cpp > CMakeFiles/cpu.dir/src/cpu.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/cpu.cpp > CMakeFiles/cpu.dir/src/cpu.cpp.i
 
 CMakeFiles/cpu.dir/src/cpu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/cpu.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/cpu.cpp -o CMakeFiles/cpu.dir/src/cpu.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/cpu.cpp -o CMakeFiles/cpu.dir/src/cpu.cpp.s
 
 CMakeFiles/cpu.dir/src/CPU_status.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/CPU_status.cpp.o: ../src/CPU_status.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cpu.dir/src/CPU_status.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/CPU_status.cpp.o -c /home/orzgg/Documents/cpu/src/CPU_status.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cpu.dir/src/CPU_status.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/CPU_status.cpp.o -c /home/orzgg/CLionProjects/cpu/src/CPU_status.cpp
 
 CMakeFiles/cpu.dir/src/CPU_status.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/CPU_status.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/CPU_status.cpp > CMakeFiles/cpu.dir/src/CPU_status.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/CPU_status.cpp > CMakeFiles/cpu.dir/src/CPU_status.cpp.i
 
 CMakeFiles/cpu.dir/src/CPU_status.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/CPU_status.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/CPU_status.cpp -o CMakeFiles/cpu.dir/src/CPU_status.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/CPU_status.cpp -o CMakeFiles/cpu.dir/src/CPU_status.cpp.s
 
 CMakeFiles/cpu.dir/src/MBC.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/MBC.cpp.o: ../src/MBC.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cpu.dir/src/MBC.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/MBC.cpp.o -c /home/orzgg/Documents/cpu/src/MBC.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cpu.dir/src/MBC.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/MBC.cpp.o -c /home/orzgg/CLionProjects/cpu/src/MBC.cpp
 
 CMakeFiles/cpu.dir/src/MBC.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/MBC.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/MBC.cpp > CMakeFiles/cpu.dir/src/MBC.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/MBC.cpp > CMakeFiles/cpu.dir/src/MBC.cpp.i
 
 CMakeFiles/cpu.dir/src/MBC.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/MBC.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/MBC.cpp -o CMakeFiles/cpu.dir/src/MBC.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/MBC.cpp -o CMakeFiles/cpu.dir/src/MBC.cpp.s
 
 CMakeFiles/cpu.dir/src/Cartridge.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/Cartridge.cpp.o: ../src/Cartridge.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cpu.dir/src/Cartridge.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/Cartridge.cpp.o -c /home/orzgg/Documents/cpu/src/Cartridge.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cpu.dir/src/Cartridge.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/Cartridge.cpp.o -c /home/orzgg/CLionProjects/cpu/src/Cartridge.cpp
 
 CMakeFiles/cpu.dir/src/Cartridge.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/Cartridge.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/Cartridge.cpp > CMakeFiles/cpu.dir/src/Cartridge.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/Cartridge.cpp > CMakeFiles/cpu.dir/src/Cartridge.cpp.i
 
 CMakeFiles/cpu.dir/src/Cartridge.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/Cartridge.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/Cartridge.cpp -o CMakeFiles/cpu.dir/src/Cartridge.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/Cartridge.cpp -o CMakeFiles/cpu.dir/src/Cartridge.cpp.s
 
 CMakeFiles/cpu.dir/src/EmuFramework.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/EmuFramework.cpp.o: ../src/EmuFramework.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/cpu.dir/src/EmuFramework.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/EmuFramework.cpp.o -c /home/orzgg/Documents/cpu/src/EmuFramework.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/cpu.dir/src/EmuFramework.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/EmuFramework.cpp.o -c /home/orzgg/CLionProjects/cpu/src/EmuFramework.cpp
 
 CMakeFiles/cpu.dir/src/EmuFramework.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/EmuFramework.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/EmuFramework.cpp > CMakeFiles/cpu.dir/src/EmuFramework.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/EmuFramework.cpp > CMakeFiles/cpu.dir/src/EmuFramework.cpp.i
 
 CMakeFiles/cpu.dir/src/EmuFramework.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/EmuFramework.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/EmuFramework.cpp -o CMakeFiles/cpu.dir/src/EmuFramework.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/EmuFramework.cpp -o CMakeFiles/cpu.dir/src/EmuFramework.cpp.s
 
 CMakeFiles/cpu.dir/src/MBC1.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/MBC1.cpp.o: ../src/MBC1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/cpu.dir/src/MBC1.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/MBC1.cpp.o -c /home/orzgg/Documents/cpu/src/MBC1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/cpu.dir/src/MBC1.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/MBC1.cpp.o -c /home/orzgg/CLionProjects/cpu/src/MBC1.cpp
 
 CMakeFiles/cpu.dir/src/MBC1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/MBC1.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/MBC1.cpp > CMakeFiles/cpu.dir/src/MBC1.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/MBC1.cpp > CMakeFiles/cpu.dir/src/MBC1.cpp.i
 
 CMakeFiles/cpu.dir/src/MBC1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/MBC1.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/MBC1.cpp -o CMakeFiles/cpu.dir/src/MBC1.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/MBC1.cpp -o CMakeFiles/cpu.dir/src/MBC1.cpp.s
 
 CMakeFiles/cpu.dir/src/MBC2.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/MBC2.cpp.o: ../src/MBC2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/cpu.dir/src/MBC2.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/MBC2.cpp.o -c /home/orzgg/Documents/cpu/src/MBC2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/cpu.dir/src/MBC2.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/MBC2.cpp.o -c /home/orzgg/CLionProjects/cpu/src/MBC2.cpp
 
 CMakeFiles/cpu.dir/src/MBC2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/MBC2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/MBC2.cpp > CMakeFiles/cpu.dir/src/MBC2.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/MBC2.cpp > CMakeFiles/cpu.dir/src/MBC2.cpp.i
 
 CMakeFiles/cpu.dir/src/MBC2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/MBC2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/MBC2.cpp -o CMakeFiles/cpu.dir/src/MBC2.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/MBC2.cpp -o CMakeFiles/cpu.dir/src/MBC2.cpp.s
 
 CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o: CMakeFiles/cpu.dir/flags.make
 CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o: ../src/LCD_Controller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o -c /home/orzgg/Documents/cpu/src/LCD_Controller.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o -c /home/orzgg/CLionProjects/cpu/src/LCD_Controller.cpp
 
 CMakeFiles/cpu.dir/src/LCD_Controller.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpu.dir/src/LCD_Controller.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/Documents/cpu/src/LCD_Controller.cpp > CMakeFiles/cpu.dir/src/LCD_Controller.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orzgg/CLionProjects/cpu/src/LCD_Controller.cpp > CMakeFiles/cpu.dir/src/LCD_Controller.cpp.i
 
 CMakeFiles/cpu.dir/src/LCD_Controller.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpu.dir/src/LCD_Controller.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/Documents/cpu/src/LCD_Controller.cpp -o CMakeFiles/cpu.dir/src/LCD_Controller.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orzgg/CLionProjects/cpu/src/LCD_Controller.cpp -o CMakeFiles/cpu.dir/src/LCD_Controller.cpp.s
 
 # Object files for target cpu
 cpu_OBJECTS = \
@@ -200,7 +200,7 @@ cpu: CMakeFiles/cpu.dir/src/MBC2.cpp.o
 cpu: CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o
 cpu: CMakeFiles/cpu.dir/build.make
 cpu: CMakeFiles/cpu.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable cpu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable cpu"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cpu.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -213,6 +213,6 @@ CMakeFiles/cpu.dir/clean:
 .PHONY : CMakeFiles/cpu.dir/clean
 
 CMakeFiles/cpu.dir/depend:
-	cd /home/orzgg/Documents/cpu/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/orzgg/Documents/cpu /home/orzgg/Documents/cpu /home/orzgg/Documents/cpu/cmake-build-debug /home/orzgg/Documents/cpu/cmake-build-debug /home/orzgg/Documents/cpu/cmake-build-debug/CMakeFiles/cpu.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/orzgg/CLionProjects/cpu/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/orzgg/CLionProjects/cpu /home/orzgg/CLionProjects/cpu /home/orzgg/CLionProjects/cpu/cmake-build-debug /home/orzgg/CLionProjects/cpu/cmake-build-debug /home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/cpu.dir/depend
 

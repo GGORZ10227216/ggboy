@@ -10,6 +10,7 @@
 
 namespace lr35902 {
     enum { LOW, HIGH } ;
+
     enum memoryAddrLabel {
         ROM_B0_BEG = 0x0,
         ROM_B0_END = 0x3FFF,
@@ -36,22 +37,27 @@ namespace lr35902 {
     class MBC {
     public :
         MBC( Cartridge* rom );
-
+        virtual ~MBC() ;
         virtual uint8_t ReadMemory( const uint16_t addr ) ;
         virtual void WriteMemory( const uint16_t addr, const uint8_t value ) ;
 
     protected:
-        uint8_t* ramBanks ;
-        uint8_t* romBanks ;
-        uint8_t* mainMemory ;
+        uint8_t* ramBanks = nullptr ;
+        uint8_t* romBanks = nullptr ;
+        uint8_t* mainMemory = nullptr ;
     public:
-        uint8_t *getMainMemory() const;
+        virtual uint8_t *getMainMemory() const;
         void Debug_ReadMemDump( char* dumpFilePath ) ;
+        void Debug_ReadBIOS( char* dumpFilePath ) ;
     protected:
 
         void DMA_Write( uint8_t addr ) ;
 
         uint8_t currentRomBank = 1 ;
+    public:
+        uint8_t getCurrentRomBank() const;
+
+    protected:
         uint8_t currentRamBank = 0 ;
 
         bool exterRamEnabled = false, romBankingMode = true ;

@@ -9,73 +9,71 @@
 #include <RegEnum.h>
 
 #include <cpu_state.h>
+#include <memory>
 #include <MBC.h>
 
 using namespace lr35902 ;
 
 class LR35902 {
   public:
-    LR35902() ;
+    LR35902( MBC& mmu ) ;
     virtual ~LR35902();
+
+    FILE* cpu_debug;
 
     CPU_status currentStatus ;
 
     inline uint16_t Get_AF() {
-        return currentStatus.regs[ A ] << 8 | currentStatus.regs[ F ] ;
+        return currentStatus.Get_AF() ;
     }
 
     inline uint16_t Get_BC() {
-        return currentStatus.regs[ B ] << 8 | currentStatus.regs[ C ] ;
+        return currentStatus.Get_BC() ;
     }
 
     inline uint16_t Get_DE() {
-        return currentStatus.regs[ D ] << 8 | currentStatus.regs[ E ] ;
+        return currentStatus.Get_DE() ;
     }
 
     inline uint16_t Get_HL() {
-        return currentStatus.regs[ H ] << 8 | currentStatus.regs[ L ] ;
+        return currentStatus.Get_HL() ;
     }
 
     inline void Set_BC( uint16_t val ) {
-        currentStatus.regs[ B ] = reinterpret_cast<uint8_t*> ( &val )[ 1 ] ;
-        currentStatus.regs[ C ] = reinterpret_cast<uint8_t*> ( &val )[ 0 ] ;
+        currentStatus.Set_BC( val ) ;
     }
 
     inline void Set_DE( uint16_t val ) {
-        currentStatus.regs[ D ] = reinterpret_cast<uint8_t*> ( &val )[ 1 ] ;
-        currentStatus.regs[ E ] = reinterpret_cast<uint8_t*> ( &val )[ 0 ] ;
+        currentStatus.Set_DE( val ) ;
     }
 
     inline void Set_HL( uint16_t val ) {
-        currentStatus.regs[ H ] = reinterpret_cast<uint8_t*> ( &val )[ 1 ] ;
-        currentStatus.regs[ L ] = reinterpret_cast<uint8_t*> ( &val )[ 0 ] ;
+        currentStatus.Set_HL( val ) ;
     }
 
     static inline bool TEST_BIT( uint8_t byte, uint8_t bitPos ) {
         return byte & ( 1 << bitPos ) ;
     }
 
-    inline void Set_SP( uint16_t val ) { currentStatus.SP = val ; }
+    inline bool Get_ZeroFlag() const { return currentStatus.Get_ZeroFlag() ; }
+    inline bool Get_SubFlag() const { return currentStatus.Get_SubFlag() ; }
+    inline bool Get_HCFlag() const { return currentStatus.Get_HCFlag() ; }
+    inline bool Get_CFlag() const { return currentStatus.Get_CFlag() ; }
 
-    inline bool Get_ZeroFlag() { return 0b10000000 & currentStatus.regs[ F ] ; }
-    inline bool Get_SubFlag()  { return 0b01000000 & currentStatus.regs[ F ] ; }
-    inline bool Get_HCFlag()   { return 0b00100000 & currentStatus.regs[ F ] ; }
-    inline bool Get_CFlag()    { return 0b00010000 & currentStatus.regs[ F ] ; }
-
-    inline void Set_ZeroFlag() { currentStatus.regs[ F ] |= 0b10000000 ; }
-    inline void Set_SubFlag()  { currentStatus.regs[ F ] |= 0b01000000 ; }
-    inline void Set_HCFlag()   { currentStatus.regs[ F ] |= 0b00100000 ; }
-    inline void Set_CFlag()    { currentStatus.regs[ F ] |= 0b00010000 ; }
-    inline void Clear_ZeroFlag() { currentStatus.regs[ F ] &= 0b01111111 ; }
-    inline void Clear_SubFlag()  { currentStatus.regs[ F ] &= 0b10111111 ; }
-    inline void Clear_HCFlag()   { currentStatus.regs[ F ] &= 0b11011111 ; }
-    inline void Clear_CFlag()    { currentStatus.regs[ F ] &= 0b11101111 ; }
+    inline void Set_ZeroFlag() { currentStatus.Set_ZeroFlag() ; }
+    inline void Set_SubFlag()  { currentStatus.Set_SubFlag() ; }
+    inline void Set_HCFlag()   { currentStatus.Set_HCFlag() ; }
+    inline void Set_CFlag()    { currentStatus.Set_CFlag() ; }
+    inline void Clear_ZeroFlag() { currentStatus.Clear_ZeroFlag() ; }
+    inline void Clear_SubFlag()  { currentStatus.Clear_SubFlag() ; }
+    inline void Clear_HCFlag()   { currentStatus.Clear_HCFlag() ; }
+    inline void Clear_CFlag()    { currentStatus.Clear_CFlag() ; }
 
     inline uint16_t Fetch_16bitByMMU( uint16_t addr ) {
         uint16_t value = 0 ;
         uint8_t* hilo = (uint8_t*) &value ;
-        hilo[ LOW ] = _mmu->ReadMemory( addr ) ;
-        hilo[ HIGH ] = _mmu->ReadMemory( addr + 1 )  ;
+        hilo[ LOW ] = _mmu.ReadMemory( addr ) ;
+        hilo[ HIGH ] = _mmu.ReadMemory( addr + 1 )  ;
         return value ;
     } // Fetch_16bitByMMU()
 
@@ -93,23 +91,24 @@ class LR35902 {
     } //
 
 
-    inline uint8_t MEMREAD(uint16_t addr) { return _mmu->ReadMemory( addr ) ; }
-    inline void MEMWRITE(uint16_t addr, uint8_t data) { _mmu->WriteMemory( addr, data ) ; }
+    inline uint8_t MEMREAD(uint16_t addr) { return _mmu.ReadMemory( addr ) ; }
+    inline void MEMWRITE(uint16_t addr, uint8_t data) { _mmu.WriteMemory( addr, data ) ; }
 
+    void RunExtendInstruction( uint8_t opcode ) ;
     void ResumeFromState( const CPU_status cs ) ;
     void ExecuteCurrentInstruction() ;
     void CheckInterrupts() ;
     void DoInterrupt( uint8_t irtNum ) ;
-
+    void LogCPU( uint8_t opcode ) ;
+    bool halting = false ;
+    static uint8_t  cop ;
+    static uint16_t cpc ;
 private:
-    MBC* _mmu = nullptr ;
+    MBC& _mmu ;
 
+    int8_t IME_delay = 0 ;
+    uint64_t instC = 0;
 };
-
-#define CPU_regs currentStatus.regs
-#define CPU_SP   currentStatus.SP
-#define CPU_PC   currentStatus.PC
-#define memory _mmu->getMainMemory()
 
 enum RegAddr{
     P1 = 0xFF00 , SB = 0xFF01, SC = 0xFF02, DIV = 0xFF04, TIMA = 0xFF05, TMA = 0xFF06, TAC = 0xFF07,

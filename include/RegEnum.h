@@ -11,4 +11,12 @@ enum REGNAME { B = 0,
                A = 7
 } ;
 
+enum REGNAME_16 {
+    BC = 0,
+    DE = 1,
+    HL = 2,
+    SP = 3,
+    AF = 3
+};
+
 #endif // REGENUM_H_INCLUDED

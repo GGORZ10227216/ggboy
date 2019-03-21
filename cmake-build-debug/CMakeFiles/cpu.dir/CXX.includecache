@@ -40,22 +40,6 @@ stdint.h
 Cartridge.h
 -
 
-.././include/MBC1.h
-MBC.h
--
-
-.././include/MBC2.h
-MBC.h
--
-
-.././include/MBC_header.h
-MBC.h
--
-MBC1.h
--
-MBC2.h
--
-
 .././include/RegEnum.h
 
 .././include/cpu.h
@@ -71,6 +55,8 @@ RegEnum.h
 -
 cpu_state.h
 -
+memory
+-
 MBC.h
 -
 
@@ -82,41 +68,9 @@ cstring
 RegEnum.h
 -
 
-.././include/errorCode.h
-
-/home/orzgg/Documents/cpu/main.cpp
-cstdio
--
-EmuFramework.h
--
-
-/home/orzgg/Documents/cpu/src/CPU_status.cpp
-cpu_state.h
--
-cpu.h
--
-
-/home/orzgg/Documents/cpu/src/EmuFramework.cpp
-EmuFramework.h
-/home/orzgg/Documents/cpu/src/EmuFramework.h
-iostream
--
-iomanip
--
-MBC_header.h
--
-unistd.h
--
-time.h
--
-sstream
--
-Cartridge.h
--
-
-/home/orzgg/Documents/cpu/src/LCD_Controller.cpp
+/home/orzgg/CLionProjects/cpu/src/LCD_Controller.cpp
 LCD_Controller.h
-/home/orzgg/Documents/cpu/src/LCD_Controller.h
+/home/orzgg/CLionProjects/cpu/src/LCD_Controller.h
 EmuFramework.h
 -
 cstdio
@@ -126,19 +80,5 @@ iostream
 unistd.h
 -
 bitset
--
-
-/home/orzgg/Documents/cpu/src/cpu.cpp
-cpu.h
-/home/orzgg/Documents/cpu/src/cpu.h
-MBC.h
--
-errorCode.h
--
-cstring
--
-cpu_state.h
--
-EmuFramework.h
 -
 

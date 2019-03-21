@@ -43,12 +43,22 @@ CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o: .././include/cpu_state.h
 CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o: ../src/LCD_Controller.cpp
 
 CMakeFiles/cpu.dir/src/MBC.cpp.o: .././include/Cartridge.h
+CMakeFiles/cpu.dir/src/MBC.cpp.o: .././include/EmuFramework.h
+CMakeFiles/cpu.dir/src/MBC.cpp.o: .././include/LCD_Controller.h
 CMakeFiles/cpu.dir/src/MBC.cpp.o: .././include/MBC.h
+CMakeFiles/cpu.dir/src/MBC.cpp.o: .././include/RegEnum.h
+CMakeFiles/cpu.dir/src/MBC.cpp.o: .././include/cpu.h
+CMakeFiles/cpu.dir/src/MBC.cpp.o: .././include/cpu_state.h
 CMakeFiles/cpu.dir/src/MBC.cpp.o: ../src/MBC.cpp
 
 CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/Cartridge.h
+CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/EmuFramework.h
+CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/LCD_Controller.h
 CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/MBC.h
 CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/MBC1.h
+CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/RegEnum.h
+CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/cpu.h
+CMakeFiles/cpu.dir/src/MBC1.cpp.o: .././include/cpu_state.h
 CMakeFiles/cpu.dir/src/MBC1.cpp.o: ../src/MBC1.cpp
 
 CMakeFiles/cpu.dir/src/MBC2.cpp.o: .././include/Cartridge.h
