@@ -29,6 +29,11 @@ public :
         return ( regs[ H ] << 8 ) | regs[ L ] ;
     }
 
+    inline void Set_AF( uint16_t val ) {
+        regs[ A ] = reinterpret_cast<uint8_t*> ( &val )[ 1 ] ;
+        regs[ F ] = reinterpret_cast<uint8_t*> ( &val )[ 0 ] ;
+    }
+
     inline void Set_BC( uint16_t val ) {
         regs[ B ] = reinterpret_cast<uint8_t*> ( &val )[ 1 ] ;
         regs[ C ] = reinterpret_cast<uint8_t*> ( &val )[ 0 ] ;

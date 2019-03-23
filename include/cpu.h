@@ -78,7 +78,7 @@ class LR35902 {
     } // Fetch_16bitByMMU()
 
     inline bool GetJumpCondition( uint8_t opcode ) {
-        switch ( opcode & 0b00011000 ) {
+        switch ( ( opcode & 0b00011000 ) ) {
             case 0x00 :
                 return !Get_ZeroFlag() ;
             case 0x08 :
@@ -105,9 +105,10 @@ class LR35902 {
     static uint16_t cpc ;
 private:
     MBC& _mmu ;
-
+    bool stackLogging = false ;
     int8_t IME_delay = 0 ;
     uint64_t instC = 0;
+    static uint16_t DAATable[] ;
 };
 
 enum RegAddr{
