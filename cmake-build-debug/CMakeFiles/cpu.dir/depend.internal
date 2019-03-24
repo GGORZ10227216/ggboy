@@ -9,18 +9,18 @@ CMakeFiles/cpu.dir/main.cpp.o
  .././include/RegEnum.h
  .././include/cpu.h
  .././include/cpu_state.h
- /home/orzgg/CLionProjects/cpu/main.cpp
+ /home/orzgg/ggboy/main.cpp
 CMakeFiles/cpu.dir/src/CPU_status.cpp.o
  .././include/Cartridge.h
  .././include/MBC.h
  .././include/RegEnum.h
  .././include/cpu.h
  .././include/cpu_state.h
- /home/orzgg/CLionProjects/cpu/src/CPU_status.cpp
+ /home/orzgg/ggboy/src/CPU_status.cpp
 CMakeFiles/cpu.dir/src/Cartridge.cpp.o
  .././include/Cartridge.h
  .././include/errorCode.h
- /home/orzgg/CLionProjects/cpu/src/Cartridge.cpp
+ /home/orzgg/ggboy/src/Cartridge.cpp
 CMakeFiles/cpu.dir/src/EmuFramework.cpp.o
  .././include/Cartridge.h
  .././include/EmuFramework.h
@@ -32,7 +32,7 @@ CMakeFiles/cpu.dir/src/EmuFramework.cpp.o
  .././include/RegEnum.h
  .././include/cpu.h
  .././include/cpu_state.h
- /home/orzgg/CLionProjects/cpu/src/EmuFramework.cpp
+ /home/orzgg/ggboy/src/EmuFramework.cpp
 CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o
  .././include/Cartridge.h
  .././include/EmuFramework.h
@@ -41,7 +41,7 @@ CMakeFiles/cpu.dir/src/LCD_Controller.cpp.o
  .././include/RegEnum.h
  .././include/cpu.h
  .././include/cpu_state.h
- /home/orzgg/CLionProjects/cpu/src/LCD_Controller.cpp
+ /home/orzgg/ggboy/src/LCD_Controller.cpp
 CMakeFiles/cpu.dir/src/MBC.cpp.o
  .././include/Cartridge.h
  .././include/EmuFramework.h
@@ -50,7 +50,7 @@ CMakeFiles/cpu.dir/src/MBC.cpp.o
  .././include/RegEnum.h
  .././include/cpu.h
  .././include/cpu_state.h
- /home/orzgg/CLionProjects/cpu/src/MBC.cpp
+ /home/orzgg/ggboy/src/MBC.cpp
 CMakeFiles/cpu.dir/src/MBC1.cpp.o
  .././include/Cartridge.h
  .././include/EmuFramework.h
@@ -60,12 +60,12 @@ CMakeFiles/cpu.dir/src/MBC1.cpp.o
  .././include/RegEnum.h
  .././include/cpu.h
  .././include/cpu_state.h
- /home/orzgg/CLionProjects/cpu/src/MBC1.cpp
+ /home/orzgg/ggboy/src/MBC1.cpp
 CMakeFiles/cpu.dir/src/MBC2.cpp.o
  .././include/Cartridge.h
  .././include/MBC.h
  .././include/MBC2.h
- /home/orzgg/CLionProjects/cpu/src/MBC2.cpp
+ /home/orzgg/ggboy/src/MBC2.cpp
 CMakeFiles/cpu.dir/src/cpu.cpp.o
  .././include/Cartridge.h
  .././include/EmuFramework.h
@@ -75,4 +75,4 @@ CMakeFiles/cpu.dir/src/cpu.cpp.o
  .././include/cpu.h
  .././include/cpu_state.h
  .././include/errorCode.h
- /home/orzgg/CLionProjects/cpu/src/cpu.cpp
+ /home/orzgg/ggboy/src/cpu.cpp

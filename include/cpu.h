@@ -109,6 +109,7 @@ private:
     int8_t IME_delay = 0 ;
     uint64_t instC = 0;
     static uint16_t DAATable[] ;
+
 };
 
 enum RegAddr{

@@ -8,34 +8,34 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/orzgg/CLionProjects/cpu/cmake-build-debug"/>
+				<Option working_dir="/home/orzgg/ggboy/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/orzgg/CLionProjects/cpu/cmake-build-debug"/>
+				<Option working_dir="/home/orzgg/ggboy/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="cpu">
-				<Option output="/home/orzgg/CLionProjects/cpu/cmake-build-debug/cpu" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/orzgg/CLionProjects/cpu/cmake-build-debug"/>
+				<Option output="/home/orzgg/ggboy/cmake-build-debug/cpu" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/orzgg/ggboy/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DNDEBUG"/>
-					<Add directory="/home/orzgg/CLionProjects/cpu/./include"/>
+					<Add directory="/home/orzgg/ggboy/./include"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -46,21 +46,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="cpu/fast">
-				<Option output="/home/orzgg/CLionProjects/cpu/cmake-build-debug/cpu" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/orzgg/CLionProjects/cpu/cmake-build-debug"/>
+				<Option output="/home/orzgg/ggboy/cmake-build-debug/cpu" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/orzgg/ggboy/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DNDEBUG"/>
-					<Add directory="/home/orzgg/CLionProjects/cpu/./include"/>
+					<Add directory="/home/orzgg/ggboy/./include"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -71,81 +71,81 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpu/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/orzgg/CLionProjects/cpu/cmake-build-debug"/>
+				<Option working_dir="/home/orzgg/ggboy/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/CLionProjects/cpu/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/orzgg/ggboy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/Cartridge.h">
+		<Unit filename="/home/orzgg/ggboy/include/Cartridge.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/EmuFramework.h">
+		<Unit filename="/home/orzgg/ggboy/include/EmuFramework.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/LCD_Controller.h">
+		<Unit filename="/home/orzgg/ggboy/include/LCD_Controller.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC.h">
+		<Unit filename="/home/orzgg/ggboy/include/MBC.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC1.h">
+		<Unit filename="/home/orzgg/ggboy/include/MBC1.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC2.h">
+		<Unit filename="/home/orzgg/ggboy/include/MBC2.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC_header.h">
+		<Unit filename="/home/orzgg/ggboy/include/MBC_header.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/catch.hpp">
+		<Unit filename="/home/orzgg/ggboy/include/catch.hpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/cpu_state.h">
+		<Unit filename="/home/orzgg/ggboy/include/cpu_state.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/errorCode.h">
+		<Unit filename="/home/orzgg/ggboy/include/errorCode.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/main.cpp">
+		<Unit filename="/home/orzgg/ggboy/main.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/CPU_status.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/CPU_status.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/Cartridge.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/Cartridge.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/EmuFramework.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/EmuFramework.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/LCD_Controller.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/LCD_Controller.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/MBC.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/MBC.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/MBC1.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/MBC1.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/MBC2.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/MBC2.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/src/cpu.cpp">
+		<Unit filename="/home/orzgg/ggboy/src/cpu.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/CMakeLists.txt">
+		<Unit filename="/home/orzgg/ggboy/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -112,6 +112,7 @@ void EmuFramework::RenderSDL_Texture() {
     now = SDL_GetPerformanceCounter() ;
     double fix = (double)((now - last)*1000000) / SDL_GetPerformanceFrequency() ;
 
+
     int64_t delayT = 16000 - static_cast<int>(fix) ;
     if ( delayT > 0 )
         usleep( delayT ) ;

@@ -20,17 +20,20 @@ public :
     void RenderToBuffer() ;
     int16_t cycle_scanCounter = 456 ;
 private :
-    uint8_t* _frameBuffer ;
+    uint8_t & LCDC ;
+    uint8_t & STAT ;
+    uint8_t & SCY ;
+    uint8_t & SCX ;
+    uint8_t & LY ;
+    uint8_t & LYC ;
+    uint8_t & BGP ;
+    uint8_t & OBP0 ;
+    uint8_t & OBP1 ;
+    uint8_t & WY ;
+    uint8_t & WX ;
 
-    uint8_t& LCDC, &STAT, &SCY, &SCX, &LY, &LYC ;
-    uint8_t& BGP, &OBP0, &OBP1, &WY, &WX ;
-
-    uint32_t DMG_Palette[ 4 ] = {
-            0xffe0f8d0,
-            0xff88c070,
-            0xff346856,
-            0xff081820
-    } ;
+    static uint8_t* _frameBuffer ;
+    static uint32_t DMG_Palette[ 4 ] ;
 
     enum { cycle_perscanline = 456, LCD_MODE0 = 0,
            LCD_MODE1 = 1, CoFlag = 2, LCD_ITR_MODE0 = 3,
