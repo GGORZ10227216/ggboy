@@ -105,11 +105,14 @@ class LR35902 {
     static uint16_t cpc ;
 private:
     MBC& _mmu ;
-    bool stackLogging = false ;
+    bool iscb = false ;
+    bool stackLogging = true ;
     int8_t IME_delay = 0 ;
     uint64_t instC = 0;
     static uint16_t DAATable[] ;
-
+    static uint8_t normalCycle[] ;
+    static uint8_t normalBranched[] ;
+    static uint8_t cbCycle[] ;
 };
 
 enum RegAddr{

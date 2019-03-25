@@ -118,10 +118,8 @@ void MBC1::WriteMemory(const uint16_t addr, const uint8_t value) {
     } // else if
     else {
         // no control needed over this area so write to memory
-/*
-        if ( addr == 0xff43 )
-            printf( "PC=%x opcode=%x %x\n", LR35902::cpc, LR35902::cop, value ) ;
-*/
+        //if ( addr == RegAddr::SCX )
+        //    printf( "%x %x %x LY=%x\n", LR35902::cpc, LR35902::cop, value, mainMemory[ LY ] ) ;
         mainMemory[ addr ] = value ;
     } // else
 }
