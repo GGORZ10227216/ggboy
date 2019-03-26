@@ -11,12 +11,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80a25f49-ec7b-42fc-9d80-e2a4fb4ce06a" name="Default Changelist" comment="">
+    <list default="true" id="80a25f49-ec7b-42fc-9d80-e2a4fb4ce06a" name="Default Changelist" comment="Fix a randomly happen bug in graphics emulation&#10;&#10;From game galaga, I discovered a strange behavior: sometime a sprite's&#10;X axis can exceed 160.&#10;&#10;This illegal x value will generate a wrong pixel address that exceed&#10;framebuffer's size, and write palette value to references of system &#10;register( the end address of framebuffer and ref address of sysReg are&#10;very close!! )&#10;&#10;Finally, when the sysReg's address are ruined, it will lead to incorrect&#10;graphics glitches or just seg fault.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cpu" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cpu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cpu.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cpu.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/LCD_Controller.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/LCD_Controller.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/cpu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EmuFramework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/EmuFramework.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LCD_Controller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/LCD_Controller.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MBC1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MBC1.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpu.cpp" afterDir="false" />
@@ -68,36 +82,38 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/cpu.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="212">
-                  <caret line="1340" column="57" selection-start-line="1340" selection-start-column="57" selection-end-line="1340" selection-end-column="57" />
+                <state relative-caret-position="26205">
+                  <caret line="1747" column="13" selection-start-line="1747" selection-start-column="7" selection-end-line="1747" selection-end-column="13" />
                   <folding>
                     <element signature="e#0#16#0" expanded="true" />
-                    <element signature="e#56732#57038#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/include/cpu.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1410">
+                  <caret line="94" selection-start-line="94" selection-end-line="94" />
+                  <folding>
+                    <element signature="e#29#50#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/LCD_Controller.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1661">
-                  <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+                <state relative-caret-position="1102">
+                  <caret line="97" column="15" selection-start-line="97" selection-start-column="15" selection-end-line="97" selection-end-column="15" />
                   <folding>
                     <element signature="e#38#65#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/MBC.cpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="598">
-                  <caret line="152" selection-start-line="152" selection-end-line="152" />
                 </state>
               </provider>
             </entry>
@@ -106,23 +122,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/include/MBC_header.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="6" selection-start-line="6" selection-end-line="6" />
-                  <folding>
-                    <element signature="e#91#107#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/MBC1.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="91">
-                  <caret line="96" column="16" lean-forward="true" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
+                <state relative-caret-position="472">
+                  <caret line="121" column="8" lean-forward="true" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
                   <folding>
                     <element signature="e#40#57#0" expanded="true" />
                   </folding>
@@ -133,12 +137,22 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/cpu.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-12">
-                  <caret line="121" column="71" selection-start-line="121" selection-start-column="71" selection-end-line="121" selection-end-column="71" />
+                <state relative-caret-position="-23">
+                  <caret line="438" column="77" selection-start-line="438" selection-start-column="62" selection-end-line="438" selection-end-column="77" />
                   <folding>
                     <element signature="e#0#16#0" expanded="true" />
-                    <element signature="e#55704#56010#0" expanded="true" />
-                    <element signature="e#56091#56665#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/include/cpu_state.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="405">
+                  <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#89#107#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -165,8 +179,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/include/EmuFramework.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="54" />
+                <state relative-caret-position="660">
+                  <caret line="44" selection-start-line="44" selection-end-line="44" />
                 </state>
               </provider>
             </entry>
@@ -174,35 +188,22 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/EmuFramework.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-420">
-                  <caret line="179" selection-start-line="179" selection-end-line="180" selection-end-column="46" />
+                <state relative-caret-position="217">
+                  <caret line="109" selection-start-line="109" selection-end-line="109" />
                   <folding>
                     <element signature="e#42#67#0" expanded="true" />
-                    <element signature="e#5207#5256#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/include/LCD_Controller.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="519">
-                  <caret line="40" column="54" lean-forward="true" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
-                  <folding>
-                    <element signature="e#38#56#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/include/cpu.h">
+            <entry file="file://$PROJECT_DIR$/include/LCD_Controller.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="100" column="40" lean-forward="true" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
+                <state relative-caret-position="300">
+                  <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
                   <folding>
-                    <element signature="e#29#50#0" expanded="true" />
+                    <element signature="e#38#56#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -214,7 +215,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>0xe2</find>
       <find>0x2a</find>
       <find>0x18</find>
       <find>diff</find>
@@ -237,13 +237,14 @@
       <find>CheckRef() ;</find>
       <find>0x76</find>
       <find>SCX</find>
-      <find>0xe0</find>
       <find>0xcb</find>
       <find>currentStatus.deltaCycle</find>
       <find>0x20</find>
       <find>0xf0</find>
-      <find>printf</find>
       <find>reti</find>
+      <find>AF= %x</find>
+      <find>0xe0</find>
+      <find>printf</find>
     </findStrings>
     <replaceStrings>
       <replace>memory</replace>
@@ -337,18 +338,16 @@
         <option value="$PROJECT_DIR$/src/EmuFramework.cpp" />
         <option value="$PROJECT_DIR$/include/cpu.h" />
         <option value="$PROJECT_DIR$/include/LCD_Controller.h" />
-        <option value="$PROJECT_DIR$/src/MBC1.cpp" />
-        <option value="$PROJECT_DIR$/src/LCD_Controller.cpp" />
         <option value="$PROJECT_DIR$/src/cpu.cpp" />
+        <option value="$PROJECT_DIR$/src/LCD_Controller.cpp" />
+        <option value="$PROJECT_DIR$/src/MBC1.cpp" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="700" />
-    <option name="y" value="281" />
-    <option name="width" value="1272" />
-    <option name="height" value="692" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -360,16 +359,16 @@
           <expand>
             <path>
               <item name="cpu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ggboy" type="462c0819:PsiDirectoryNode" />
+              <item name="cpu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cpu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ggboy" type="462c0819:PsiDirectoryNode" />
+              <item name="cpu" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cpu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ggboy" type="462c0819:PsiDirectoryNode" />
+              <item name="cpu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -381,7 +380,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gbemu" />
+    <property name="last_opened_file_path" value="$USER_HOME$/gbemu" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -514,6 +513,7 @@
       <workItem from="1553310399108" duration="379000" />
       <workItem from="1553384232746" duration="1710000" />
       <workItem from="1553386438145" duration="7514000" />
+      <workItem from="1553595120952" duration="1315000" />
     </task>
     <task id="LOCAL-00001" summary="2019-2-7">
       <created>1549507476624</created>
@@ -526,7 +526,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="669562000" />
+    <option name="totallyTimeSpent" value="688964000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -538,21 +538,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49126637" visible="true" weight="0.1664888" />
-      <window_info id="Structure" order="1" sideWeight="0.50873363" side_tool="true" visible="true" weight="0.1664888" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49075392" visible="true" weight="0.16435432" />
+      <window_info id="Structure" order="1" sideWeight="0.5092461" side_tool="true" visible="true" weight="0.16435432" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32751092" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32969433" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.27183408" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" visible="true" weight="0.26155463" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32969433" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.29257643" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.2920168" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32969433" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3286026" />
@@ -657,6 +657,7 @@
         <watch expression="opcode" />
         <watch expression="currentStatus.SP" language="ObjectiveC" />
         <watch expression="currentStatus.regs[ A ]" language="ObjectiveC" />
+        <watch expression="cycle_scanCounter" language="ObjectiveC" />
         <watch expression="currentStatus.regs[ F ]" language="ObjectiveC" />
         <watch expression="currentStatus.regs[ B ]" language="ObjectiveC" />
         <watch expression="currentStatus.regs[ C ]" language="ObjectiveC" />
@@ -670,12 +671,23 @@
         <watch expression="EmuFramework::GetMMU()-&gt;getMainMemory()[ IE ]" language="ObjectiveC" />
         <watch expression="EmuFramework::GetMMU()-&gt;getMainMemory()[ IF ]" language="ObjectiveC" />
         <watch expression="currentStatus.IME" language="ObjectiveC" />
+        <watch expression="LY" language="ObjectiveC" />
         <watch expression="cpu-&gt;currentStatus.PC" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>LY</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>cycle_scanCounter</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>cpu-&gt;currentStatus.PC</expression-string>
         <language-id>ObjectiveC</language-id>
@@ -713,16 +725,6 @@
       </expression>
       <expression>
         <expression-string>_mmu-&gt;getMainMemory()[ IF ]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>_mmu-&gt;getMainMemory()[ LY ]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>_mmu-&gt;getMainMemory()[ STAT ]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -833,33 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/MBC_header.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#91#107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/RegEnum.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/cpu_state.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding>
-            <element signature="e#89#107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MBC.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
@@ -867,10 +842,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/MBC1.h">
+    <entry file="file://$PROJECT_DIR$/include/MBC_header.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="135">
+          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="e#91#107#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -891,58 +869,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MBC1.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="96" column="16" lean-forward="true" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
-          <folding>
-            <element signature="e#40#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/cpu.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="100" column="40" lean-forward="true" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
+        <state relative-caret-position="1410">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="e#29#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EmuFramework.cpp">
+    <entry file="file://$PROJECT_DIR$/include/cpu_state.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-420">
-          <caret line="179" selection-start-line="179" selection-end-line="180" selection-end-column="46" />
+        <state relative-caret-position="405">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding>
-            <element signature="e#42#67#0" expanded="true" />
-            <element signature="e#5207#5256#0" expanded="true" />
+            <element signature="e#89#107#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/RegEnum.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/MBC1.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/EmuFramework.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="54" />
+        <state relative-caret-position="660">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/LCD_Controller.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="40" column="54" lean-forward="true" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
+        <state relative-caret-position="300">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
           <folding>
             <element signature="e#38#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/EmuFramework.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+          <folding>
+            <element signature="e#42#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/LCD_Controller.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1661">
-          <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+        <state relative-caret-position="1102">
+          <caret line="97" column="15" selection-start-line="97" selection-start-column="15" selection-end-line="97" selection-end-column="15" />
           <folding>
             <element signature="e#38#65#0" expanded="true" />
           </folding>
@@ -951,11 +942,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cpu.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="1340" column="57" selection-start-line="1340" selection-start-column="57" selection-end-line="1340" selection-end-column="57" />
+        <state relative-caret-position="-23">
+          <caret line="438" column="77" selection-start-line="438" selection-start-column="62" selection-end-line="438" selection-end-column="77" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#56732#57038#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MBC1.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="121" column="8" lean-forward="true" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
+          <folding>
+            <element signature="e#40#57#0" expanded="true" />
           </folding>
         </state>
       </provider>

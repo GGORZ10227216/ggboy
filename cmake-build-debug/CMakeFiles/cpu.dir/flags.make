@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = -DNDEBUG
 
-CXX_INCLUDES = -I/home/orzgg/ggboy/./include 
+CXX_INCLUDES = -I/home/orzgg/CLionProjects/cpu/./include 
 

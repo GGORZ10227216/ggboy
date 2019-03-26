@@ -18,7 +18,15 @@ public :
     inline bool LCD_IsOn() { return LCDC & ( 1 << 7 ) ; }
     void Update( uint8_t instructionCycle ) ;
     void RenderToBuffer() ;
-    int16_t cycle_scanCounter = 456 ;
+    int16_t cycle_counter = 0 ;
+
+    enum VideoMode {
+        ACCESS_OAM,
+        ACCESS_VRAM,
+        HBLANK,
+        VBLANK,
+    };
+
 private :
     uint8_t & LCDC ;
     uint8_t & STAT ;
@@ -34,11 +42,13 @@ private :
 
     static uint8_t* _frameBuffer ;
     static uint32_t DMG_Palette[ 4 ] ;
+    uint8_t current_mode = ACCESS_OAM ;
 
     enum { cycle_perscanline = 456, LCD_MODE0 = 0,
            LCD_MODE1 = 1, CoFlag = 2, LCD_ITR_MODE0 = 3,
            LCD_ITR_MODE1 = 4, LCD_ITR_MODE2 = 5,
-           CoITR = 6, MODE2_END = 376, MODE3_END = 204,
+           CoITR = 6, CLOCKS_PER_HBLANK = 204, CLOCKS_PER_SCANLINE_OAM = 80,
+            CLOCKS_PER_SCANLINE_VRAM = 172, CLOCKS_PER_SCANLINE = 456,
            SCR_W = 160, SCR_H = 144
     } ;
 

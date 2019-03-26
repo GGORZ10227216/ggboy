@@ -36,41 +36,73 @@ void LCD_Controller::ChangeLCD_Mode(uint8_t mode) {
 } // ChangeLCD_Mode
 
 void LCD_Controller::CheckStatus() {
-    if ( !LCD_IsOn() ) {
-        // V-blanking
-        cycle_scanCounter = cycle_perscanline ;
-        MAINMEM[ RegAddr::LY ]  = 0 ;
-        if ( GetLCD_Mode( STAT ) != 1 )
-            ChangeLCD_Mode( 1 ) ;
-    } // if
-    else {
-        if ( MAINMEM[ RegAddr::LY ] >= 144 ) {
-            // V-blank mode
-            if ( GetLCD_Mode( STAT ) != 1 )
-                ChangeLCD_Mode( 1 ) ;
-        } // if
-        else {
-            if ( cycle_scanCounter >= MODE2_END ) {
-                if ( GetLCD_Mode( STAT ) != 2 )
-                    ChangeLCD_Mode( 2 ) ;
-            } // if
-            else if ( cycle_scanCounter >= MODE3_END ) {
-                if ( GetLCD_Mode( STAT ) != 3 )
-                    ChangeLCD_Mode( 3 ) ;
-            } // else if
-            else if ( GetLCD_Mode( STAT ) != 0 ) {
-                ChangeLCD_Mode( 0 ) ;
-            } // else
-        } // else
+    switch (current_mode) {
+        case VideoMode::ACCESS_OAM:
+            if (cycle_counter >= CLOCKS_PER_SCANLINE_OAM) {
+                cycle_counter = cycle_counter % CLOCKS_PER_SCANLINE_OAM;
+                ChangeLCD_Mode( 3 ) ;
+                current_mode = VideoMode::ACCESS_VRAM;
+            }
+            break;
+        case VideoMode::ACCESS_VRAM:
+            if (cycle_counter >= CLOCKS_PER_SCANLINE_VRAM) {
+                cycle_counter = cycle_counter % CLOCKS_PER_SCANLINE_VRAM;
+                current_mode = VideoMode::HBLANK;
 
-        if ( MAINMEM[ RegAddr::LY ]  == MAINMEM[ RegAddr::LYC ] ) {
-            STAT |= ( 1 << CoFlag ) ;
-            if ( STAT & ( 1 << CoITR ) )
-                EmuFramework::RequestInterrupt( 1 ) ;
-        } // if
-        else
-            STAT &= 0b11111011 ; // clear CoFlag
-    } // else
+                bool hblank_interrupt = LR35902::TEST_BIT( STAT, 3 ) ;
+
+                if (hblank_interrupt) {
+                    EmuFramework::RequestInterrupt( 1 ) ;
+                }
+
+                bool ly_coincidence_interrupt = LR35902::TEST_BIT( STAT, 6 );
+                bool ly_coincidence = LYC == LY ;
+
+                if (ly_coincidence_interrupt && ly_coincidence) {
+                    EmuFramework::RequestInterrupt( 1 ) ;
+                }
+                STAT |= 0b00000100 ;
+
+                ChangeLCD_Mode( 0 ) ;
+            }
+            break;
+        case VideoMode::HBLANK:
+            if (cycle_counter >= CLOCKS_PER_HBLANK) {
+
+                RenderToBuffer() ;
+                ++LY ;
+
+                cycle_counter = cycle_counter % CLOCKS_PER_HBLANK;
+
+                /* Line 145 (index 144) is the first line of VBLANK */
+                if (LY == 144) {
+                    current_mode = VideoMode::VBLANK;
+                    ChangeLCD_Mode( 1 ) ;
+                    EmuFramework::RequestInterrupt( 0 ) ;
+                } else {
+                    ChangeLCD_Mode( 2 ) ;
+                    current_mode = VideoMode::ACCESS_OAM;
+                }
+            }
+            break;
+        case VideoMode::VBLANK:
+            if (cycle_counter >= CLOCKS_PER_SCANLINE) {
+                ++LY ;
+
+                cycle_counter = cycle_counter % CLOCKS_PER_SCANLINE;
+
+                /* Line 155 (index 154) is the last line */
+                if (LY == 154) {
+                    // RenderToBuffer() ;
+                    EmuFramework::Render() ;
+                    // buffer.reset();
+                    LY = 0 ;
+                    current_mode = VideoMode::ACCESS_OAM;
+                    ChangeLCD_Mode( 2 ) ;
+                };
+            }
+            break;
+    }
 }
 
 uint8_t LCD_Controller::GetCurrentPixelX(bool inWindowArea, uint8_t x) {
@@ -228,29 +260,6 @@ uint8_t LCD_Controller::GetPixelColor(uint8_t px, uint8_t py, uint16_t baseAddr,
 }
 
 void LCD_Controller::Update( uint8_t instructionCycle ) {
+    cycle_counter += instructionCycle;
     CheckStatus() ;
-
-    if ( LCD_IsOn() ) {
-        cycle_scanCounter -= instructionCycle ;
-    }
-    else {
-        // printf( " %d(lcd off)\n", cycle_scanCounter ) ;
-        return ;
-    }
-
-    if ( cycle_scanCounter <= 0 ) {
-        // printf( "Counter zero!\n" ) ;
-        cycle_scanCounter = cycle_perscanline ;
-        if ( MAINMEM[ RegAddr::LY ]  < 144 ) {
-            //printf( "SCX=%d\n", SCX ) ;
-            RenderToBuffer() ;
-            if ( MAINMEM[ RegAddr::LY ]  == 143 ) {
-                EmuFramework::RequestInterrupt( 0 ) ;
-                EmuFramework::Render() ;
-            } // if
-        } // if
-
-
-        MAINMEM[ RegAddr::LY ]  = (MAINMEM[ RegAddr::LY ]  == 153) ? 0 : MAINMEM[ RegAddr::LY ] + 1;
-    } // if
 }

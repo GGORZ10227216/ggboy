@@ -403,9 +403,14 @@ void LR35902::LogCPU( uint8_t opcode ) {
 void LR35902::ExecuteCurrentInstruction() {
     uint8_t opcode = MEMREAD(CPU_PC) ;
     uint16_t pc = CPU_PC ;
+
     cpc = pc ;
     cop = opcode ;
     instC++ ;
+
+    if ( instC == 24801 ) {
+        // printf( "Hit!\n" ) ;
+    } // if
 
     currentStatus.deltaCycle = 0 ;
 #ifdef DEBUG
@@ -430,9 +435,12 @@ void LR35902::ExecuteCurrentInstruction() {
     }
 
 #endif
-    printf( "AF= %x BC= %x DE=%x HL=%x SP=%x IF=%x IE=%x LY=%x --> ", currentStatus.Get_AF()
+/*
+    printf( "[%d] AF= %x BC= %x DE=%x HL=%x SP=%x IF=%x IE=%x STAT=%x LCDC=%x LY=%x --> ", instC, currentStatus.Get_AF()
                 , currentStatus.Get_BC(), currentStatus.Get_DE(), currentStatus.Get_HL(), currentStatus.SP,
-                _mmu.ReadMemory(0xff0f), _mmu.ReadMemory(0xffff), _mmu.ReadMemory(0xff44) ) ;
+                _mmu.ReadMemory( IF ), _mmu.ReadMemory( IE ), _mmu.ReadMemory( STAT ),
+                _mmu.ReadMemory( LCDC ), _mmu.ReadMemory( LY ) ) ;
+                */
     switch ( opcode ) {
         case 0x00 :
             /* NOP */
@@ -1327,7 +1335,7 @@ void LR35902::ExecuteCurrentInstruction() {
             ++CPU_PC ;
             break ;
         case 0xCB :
-            printf( "pc=%x opcode=%x cycle=%d\n", cpc, cop, currentStatus.deltaCycle) ;
+            // printf( "pc=%x opcode=%x cycle=%d\n", cpc, cop, currentStatus.deltaCycle) ;
             iscb = true ;
             RunExtendInstruction( MEMREAD(++CPU_PC) ) ;
             /*According to manual, 0xcb has no cycle*/
@@ -1339,12 +1347,12 @@ void LR35902::ExecuteCurrentInstruction() {
 
     if ( currentStatus.deltaCycle == 0 )
         currentStatus.deltaCycle = normalCycle[ opcode ]  ;
-
+/*
     if ( !iscb )
         printf( "pc=%x opcode=%x cycle=%d\n", cpc, cop, currentStatus.deltaCycle) ;
     else
         iscb = false ;
-
+*/
     if ( currentStatus.pc_jumping )
         currentStatus.pc_jumping = false ;
     else
@@ -1397,9 +1405,11 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
     }
 
 #endif
+/*
     printf( "AF= %x BC= %x DE=%x HL=%x SP=%x IF=%x IE=%x LY=%x --> ", currentStatus.Get_AF()
             , currentStatus.Get_BC(), currentStatus.Get_DE(), currentStatus.Get_HL(), currentStatus.SP,
             _mmu.ReadMemory(0xff0f), _mmu.ReadMemory(0xffff), _mmu.ReadMemory(0xff44) ) ;
+            */
     switch ( opcode ) {
         case 0x40 : case 0x41 : case 0x42 : case 0x43 : case 0x44 : case 0x45 : case 0x47 :
         case 0x48 : case 0x49 : case 0x4A : case 0x4B : case 0x4C : case 0x4D : case 0x4F :
@@ -1735,7 +1745,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
     } // switch
 
     currentStatus.deltaCycle = cbCycle[ opcode ] ;
-    printf( "pc=%x opcode=%x cycle=%d\n", cpc, cop, currentStatus.deltaCycle) ;
+    // printf( "pc=%x opcode=%x cycle=%d\n", cpc, cop, currentStatus.deltaCycle) ;
 }
 
 void LR35902::CheckInterrupts() {
