@@ -46,21 +46,24 @@ void LCD_Controller::CheckStatus() {
                     ChangeLCD_Mode( 2 ) ;
             } // if
             else if ( cycle_scanCounter >= MODE3_END ) {
-                if ( GetLCD_Mode( STAT ) != 3 )
+                if ( GetLCD_Mode( STAT ) != 3 ) {
+                    if ( MAINMEM[ RegAddr::LY ]  == MAINMEM[ RegAddr::LYC ] ) {
+                        STAT |= ( 1 << CoFlag ) ;
+                        if ( STAT & ( 1 << CoITR ) )
+                            EmuFramework::RequestInterrupt( 1 ) ;
+                    } // if
+                    else
+                        STAT &= 0b11111011 ; // clear CoFlag
+
                     ChangeLCD_Mode( 3 ) ;
+
+                } // if
+
             } // else if
             else if ( GetLCD_Mode( STAT ) != 0 ) {
                 ChangeLCD_Mode( 0 ) ;
             } // else
         } // else
-
-        if ( MAINMEM[ RegAddr::LY ]  == MAINMEM[ RegAddr::LYC ] ) {
-            STAT |= ( 1 << CoFlag ) ;
-            if ( STAT & ( 1 << CoITR ) )
-                EmuFramework::RequestInterrupt( 1 ) ;
-        } // if
-        else
-            STAT &= 0b11111011 ; // clear CoFlag
     } // else
 }
 
