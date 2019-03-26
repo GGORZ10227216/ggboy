@@ -40,7 +40,7 @@ private :
     } ;
 
     void CheckStatus() ;
-    uint8_t GetPixelColor(uint8_t px, uint8_t py, uint16_t baseAddr, uint8_t palette) ;
+    uint8_t GetPixelColor(uint8_t px, uint8_t py, uint16_t baseAddr, uint8_t palette, bool spriteMode) ;
     uint8_t GetCurrentPixelX( bool inWindowArea, uint8_t x ) ;
 
     void ChangeLCD_Mode( uint8_t mode ) ;

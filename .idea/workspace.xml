@@ -12,7 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a25f49-ec7b-42fc-9d80-e2a4fb4ce06a" name="Default Changelist" comment="Fix a randomly happen bug in graphics emulation&#10;&#10;From game galaga, I discovered a strange behavior: sometime a sprite's&#10;X axis can exceed 160.&#10;&#10;This illegal x value will generate a wrong pixel address that exceed&#10;framebuffer's size, and write palette value to references of system &#10;register( the end address of framebuffer and ref address of sysReg are&#10;very close!! )&#10;&#10;Finally, when the sysReg's address are ruined, it will lead to incorrect&#10;graphics glitches or just seg fault.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LCD_Controller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/LCD_Controller.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -68,7 +68,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/include/cpu.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="96">
+                <state relative-caret-position="1410">
                   <caret line="94" selection-start-line="94" selection-end-line="94" />
                   <folding>
                     <element signature="e#29#50#0" expanded="true" />
@@ -80,8 +80,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/LCD_Controller.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="369">
-                  <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+                <state relative-caret-position="207">
+                  <caret line="106" selection-start-line="106" selection-end-line="106" />
                   <folding>
                     <element signature="e#38#65#0" expanded="true" />
                   </folding>
@@ -96,7 +96,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/MBC1.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="157">
+                <state relative-caret-position="1500">
                   <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
                   <folding>
                     <element signature="e#40#57#0" expanded="true" />
@@ -108,7 +108,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/cpu.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-144">
+                <state relative-caret-position="5610">
                   <caret line="374" column="23" selection-start-line="374" selection-start-column="23" selection-end-line="374" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#16#0" expanded="true" />
@@ -159,8 +159,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/EmuFramework.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="169" selection-start-line="169" selection-end-line="170" />
+                <state relative-caret-position="945">
+                  <caret line="160" column="11" selection-start-line="160" selection-start-column="11" selection-end-line="160" selection-end-column="11" />
                   <folding>
                     <element signature="e#42#67#0" expanded="true" />
                   </folding>
@@ -171,7 +171,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/include/LCD_Controller.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="112">
+                <state relative-caret-position="300">
                   <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
                   <folding>
                     <element signature="e#38#56#0" expanded="true" />
@@ -509,7 +509,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="696204000" />
+    <option name="totallyTimeSpent" value="696266000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -522,20 +522,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48933333" visible="true" weight="0.16755603" />
-      <window_info id="Structure" order="1" sideWeight="0.51066667" side_tool="true" visible="true" weight="0.16755603" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48961425" visible="true" weight="0.16755603" />
+      <window_info id="Structure" order="1" sideWeight="0.51038575" side_tool="true" visible="true" weight="0.16755603" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32751092" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32969433" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" visible="true" weight="0.21218488" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.21218488" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32969433" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.2920168" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.2920168" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32969433" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3277311" />
@@ -631,7 +630,8 @@
     <MESSAGE value="2019-3-22&#10;&#10;Fix a tons of instruction behavior.&#10;&#10;Tetris: complete&#10;Aseroids: complete&#10;galaga: playable, small graphics glitch but almost correct.&#10;Zelda_link_awake: ingame, hang after intro animation end." />
     <MESSAGE value="POP AF and DAA two instruction fix&#10;&#10;According to cpu_instrs.gb's test result, I fix these two bug&#10;in code:&#10;&#10;1.POP AF will write last two value on stack back to reg A and reg F.&#10;&#10;However, any write operation perform on reg F need to AND with&#10;0xF0, insure only high 4 bit(flag bits) get write.&#10;&#10;2.I change DAA's implement to table(from VBA-m) finding method." />
     <MESSAGE value="Fix a randomly happen bug in graphics emulation&#10;&#10;From game galaga, I discovered a strange behavior: sometime a sprite's&#10;X axis can exceed 160.&#10;&#10;This illegal x value will generate a wrong pixel address that exceed&#10;framebuffer's size, and write palette value to references of system &#10;register( the end address of framebuffer and ref address of sysReg are&#10;very close!! )&#10;&#10;Finally, when the sysReg's address are ruined, it will lead to incorrect&#10;graphics glitches or just seg fault." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix a randomly happen bug in graphics emulation&#10;&#10;From game galaga, I discovered a strange behavior: sometime a sprite's&#10;X axis can exceed 160.&#10;&#10;This illegal x value will generate a wrong pixel address that exceed&#10;framebuffer's size, and write palette value to references of system &#10;register( the end address of framebuffer and ref address of sysReg are&#10;very close!! )&#10;&#10;Finally, when the sysReg's address are ruined, it will lead to incorrect&#10;graphics glitches or just seg fault." />
+    <MESSAGE value="Zelda fix#2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Zelda fix#2" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -892,7 +892,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MBC1.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
+        <state relative-caret-position="1500">
           <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
           <folding>
             <element signature="e#40#57#0" expanded="true" />
@@ -912,7 +912,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/include/cpu.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
+        <state relative-caret-position="1410">
           <caret line="94" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="e#29#50#0" expanded="true" />
@@ -922,7 +922,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/include/LCD_Controller.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
+        <state relative-caret-position="300">
           <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
           <folding>
             <element signature="e#38#56#0" expanded="true" />
@@ -932,8 +932,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EmuFramework.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="169" selection-start-line="169" selection-end-line="170" />
+        <state relative-caret-position="945">
+          <caret line="160" column="11" selection-start-line="160" selection-start-column="11" selection-end-line="160" selection-end-column="11" />
           <folding>
             <element signature="e#42#67#0" expanded="true" />
           </folding>
@@ -942,8 +942,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LCD_Controller.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        <state relative-caret-position="207">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
           <folding>
             <element signature="e#38#65#0" expanded="true" />
           </folding>

@@ -78,14 +78,12 @@ uint8_t LCD_Controller::GetCurrentPixelX(bool inWindowArea, uint8_t x) {
 void LCD_Controller::RenderToBuffer() {
 
     if ( LR35902::TEST_BIT( MAINMEM[ RegAddr::LCDC ] , 0 ) ) {
-        // Rendering Tiles
 
-        // printf( "LY=%x SCX=%x\n", LY, SCX ) ;
-        // SCX = 0x0 ;
+        // Rendering Tiles
         // Determine to draw BG or WINDOW
         bool inWindowArea = LR35902::TEST_BIT( MAINMEM[ RegAddr::LCDC ] , 5 ) && MAINMEM[ RegAddr::LY ]  >= MAINMEM[ RegAddr::WY ]   ;
-
         uint16_t tileMapBaseAddr = 0, pixelY = 0 ;
+
         if ( inWindowArea ) {
             // Determine the window pattern base address
             tileMapBaseAddr = LR35902::TEST_BIT( MAINMEM[ RegAddr::LCDC ] , 6 ) ? 0x9C00 : 0x9800 ;
@@ -94,25 +92,24 @@ void LCD_Controller::RenderToBuffer() {
         else {
             // Determine the background pattern base address
             tileMapBaseAddr = LR35902::TEST_BIT( MAINMEM[ RegAddr::LCDC ] , 3 ) ? 0x9C00 : 0x9800 ;
-            pixelY = (MAINMEM[ RegAddr::LY ]  + MAINMEM[ RegAddr::SCY ] ) % 256 ;
+            pixelY = (SCY + LY) % 256 ;
         } // else
 
         uint8_t currentTileY = ( pixelY / 8 ) ;   // rowNum / 8 ( 8 bit height per tile )
-        // printf( "BGP=%x\n", BGP ) ;
+
         for ( int x = 0 ; x < 160 ; ++x ) {
-            uint8_t currentTileX = GetCurrentPixelX(inWindowArea, x)/8 ; // 8 bit width per tile
-            uint8_t tileNum = MAINMEM[ tileMapBaseAddr + currentTileY * 32 + currentTileX ] ;
+
+            uint8_t currentMapBlockX = GetCurrentPixelX(inWindowArea, x) / 8 ; // 8 bit width per tile
+            uint8_t tileNum = MAINMEM[ tileMapBaseAddr + currentTileY * 32 + currentMapBlockX ] ;
             uint16_t currentTileData_base =
                     LR35902::TEST_BIT( MAINMEM[ RegAddr::LCDC ] , 4 ) ? 0x8000 + tileNum * 16
-                    : 0x9000 + static_cast<int8_t>( tileNum ) * 16 ;
-
-            // printf( "%x\n", pixelY ) ;
-            uint8_t color= GetPixelColor( x + SCX, pixelY % 8, currentTileData_base, BGP) ;
-
-            uint32_t pixelAddress = 640 * MAINMEM[ RegAddr::LY ]  + x * 4 ;
+                                                                      : 0x9000 + static_cast<int8_t>( tileNum ) * 16 ;
+            uint8_t color= GetPixelColor( (x + SCX), pixelY % 8, currentTileData_base, BGP, false) ;
+            uint32_t pixelAddress = 640 * MAINMEM[ RegAddr::LY ] + x * 4 ;
             memcpy( _frameBuffer + pixelAddress, DMG_Palette + color, 4 ) ;
         } // for
     } // if
+
 
     if ( LR35902::TEST_BIT( MAINMEM[ RegAddr::LCDC ] , 1 ) ) {
         // Sprites
@@ -122,41 +119,43 @@ void LCD_Controller::RenderToBuffer() {
         bool mode8x16 = LR35902::TEST_BIT( MAINMEM[ RegAddr::LCDC ] , 2 );
 
         for ( int spriteIndex = 0 ; spriteIndex < 40 ; ++spriteIndex ) {
-            //if ( spriteIndex != 14 )
-            //    continue ;
-
             uint8_t* currentOAM = MAINMEM + RegAddr::OAM + ( spriteIndex *4 ) ;
-
             uint8_t spriteHeight = mode8x16 ? 16 : 8 ;
-            uint8_t realY = currentOAM[ yPos ] - 16 ;
-            uint8_t realX = currentOAM[ xPos ] - 8 ;
+            int16_t realY = currentOAM[ yPos ] - 16 ;
+            int16_t realX = currentOAM[ xPos ] - 8 ;
 
             if ( MAINMEM[ RegAddr::LY ] >= realY && MAINMEM[ RegAddr::LY ] < realY + spriteHeight ) {
                 uint8_t cRenderingY = LR35902::TEST_BIT( currentOAM[ attr ], yFlip ) ?
                                       spriteHeight - 1 - ( MAINMEM[ RegAddr::LY ]  - realY ) : MAINMEM[ RegAddr::LY ]  - realY ;
+
                 for ( int x = 0 ; x < 8 ; ++x ) {
+                    if ( realX + x < 0 || realX + x > 160 )
+                        continue ;
                     uint32_t pixelAddress = 640 * MAINMEM[ RegAddr::LY ]  + ( realX + x ) * 4 ;
                     uint32_t bgColor = *reinterpret_cast<uint32_t*>( _frameBuffer + pixelAddress ) ;
+
                     // memcpy( &bgColor, _frameBuffer + pixelAddress, 4 ) ;
 /*
                     bool ignore = ( LR35902::TEST_BIT( currentOAM[ attr ], priority ) && bgColor != DMG_Palette[0] ) ;
                     if ( ignore )
                         continue ;
-*/
 
+*/
                     uint8_t cRenderingX = LR35902::TEST_BIT( currentOAM[ attr ], xFlip ) ?
                                           7 - x : x ;
                     uint8_t paletteOnUse = LR35902::TEST_BIT( currentOAM[attr], paletteNum ) ?
-                                            MAINMEM[ RegAddr::OBP1 ] : MAINMEM[ RegAddr::OBP0 ]  ;
-
+                                           MAINMEM[ RegAddr::OBP1 ] : MAINMEM[ RegAddr::OBP0 ]  ;
                     // printf( "[%d,#%x]palette= %x\n", LR35902::TEST_BIT( currentOAM[attr], paletteNum ), spriteIndex, paletteOnUse ) ;
 
                     uint8_t color = GetPixelColor( cRenderingX, cRenderingY,
-                            0x8000 + ( currentOAM[ patternNum ] << 4 ), paletteOnUse
-                            ) ;
+                                                   0x8000 + ( currentOAM[ patternNum ] << 4 ), paletteOnUse,
+                                                   true ) ;
 
-                    if ( color != 0 )
-                        memcpy( _frameBuffer + pixelAddress, DMG_Palette + color, 4 ) ;
+                    if ( color != 5 ) {
+                        // memcpy( _frameBuffer + pixelAddress, DMG_Palette + color, 4 ) ;
+                        uint8_t* addr = _frameBuffer + pixelAddress ;
+                        *reinterpret_cast<uint32_t*> ( addr ) = DMG_Palette[ color ] ;
+                    }
                 } // for
 
                 //printf( "currentOAM= %x\n", spriteIndex ) ;
@@ -167,7 +166,7 @@ void LCD_Controller::RenderToBuffer() {
 
 }
 
-uint8_t LCD_Controller::GetPixelColor(uint8_t px, uint8_t py, uint16_t baseAddr, uint8_t palette) {
+uint8_t LCD_Controller::GetPixelColor(uint8_t px, uint8_t py, uint16_t baseAddr, uint8_t palette, bool spriteMode) {
     /**
      * One tile line is construct by two byte. ex:
      *      #px:          01234567
@@ -207,7 +206,8 @@ uint8_t LCD_Controller::GetPixelColor(uint8_t px, uint8_t py, uint16_t baseAddr,
     currentTileData1 = currentTileData1 >> pixelX ;
 
     uint8_t index = currentTileData2 | currentTileData1 ;
-
+    if ( spriteMode && index == 0 )
+        return 5 ;
     // printf( "b1:%x b2:%x x:%d y:%d --> %x\n", currentTileData1, currentTileData2, px, py, index ) ;
     switch ( index ) {
         case 0 :
