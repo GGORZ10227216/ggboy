@@ -97,6 +97,7 @@ class LR35902 {
     void RunExtendInstruction( uint8_t opcode ) ;
     void ResumeFromState( const CPU_status cs ) ;
     void ExecuteCurrentInstruction() ;
+
     void CheckInterrupts() ;
     void DoInterrupt( uint8_t irtNum ) ;
     void LogCPU( uint8_t opcode ) ;
@@ -108,7 +109,11 @@ private:
     bool stackLogging = false ;
     int8_t IME_delay = 0 ;
     uint64_t instC = 0;
+    bool branched = false ;
     static uint16_t DAATable[] ;
+    static uint8_t opcode_cycles[] ;
+    static uint8_t opcode_cycles_branched[] ;
+    static uint8_t opcode_cycles_cb[] ;
 };
 
 enum RegAddr{

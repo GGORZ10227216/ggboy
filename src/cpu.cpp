@@ -16,6 +16,63 @@ using namespace lr35902 ;
 uint16_t LR35902::cpc = 0 ;
 uint8_t LR35902::cop = 0 ;
 
+uint8_t LR35902::opcode_cycles[256] = {
+        1, 3, 2, 2, 1, 1, 2, 1, 5, 2, 2, 2, 1, 1, 2, 1,
+        1, 3, 2, 2, 1, 1, 2, 1, 3, 2, 2, 2, 1, 1, 2, 1,
+        2, 3, 2, 2, 1, 1, 2, 1, 2, 2, 2, 2, 1, 1, 2, 1,
+        2, 3, 2, 2, 3, 3, 3, 1, 2, 2, 2, 2, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        2, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        2, 3, 3, 4, 3, 4, 2, 4, 2, 4, 3, 0, 3, 6, 2, 4,
+        2, 3, 3, 0, 3, 4, 2, 4, 2, 4, 3, 0, 3, 0, 2, 4,
+        3, 3, 2, 0, 0, 4, 2, 4, 4, 1, 4, 0, 0, 0, 2, 4,
+        3, 3, 2, 1, 0, 4, 2, 4, 3, 2, 4, 1, 0, 0, 2, 4
+};
+
+uint8_t LR35902::opcode_cycles_branched[256] = {
+        1, 3, 2, 2, 1, 1, 2, 1, 5, 2, 2, 2, 1, 1, 2, 1,
+        1, 3, 2, 2, 1, 1, 2, 1, 3, 2, 2, 2, 1, 1, 2, 1,
+        3, 3, 2, 2, 1, 1, 2, 1, 3, 2, 2, 2, 1, 1, 2, 1,
+        3, 3, 2, 2, 3, 3, 3, 1, 3, 2, 2, 2, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        2, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        5, 3, 4, 4, 6, 4, 2, 4, 5, 4, 4, 0, 6, 6, 2, 4,
+        5, 3, 4, 0, 6, 4, 2, 4, 5, 4, 4, 0, 6, 0, 2, 4,
+        3, 3, 2, 0, 0, 4, 2, 4, 4, 1, 4, 0, 0, 0, 2, 4,
+        3, 3, 2, 1, 0, 4, 2, 4, 3, 2, 4, 1, 0, 0, 2, 4
+};
+
+uint8_t LR35902::opcode_cycles_cb[256] = {
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2,
+        2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2,
+        2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2,
+        2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2,
+        2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 4, 2
+};
+
 uint16_t LR35902::DAATable[] = {
         0x0080, 0x0100, 0x0200, 0x0300, 0x0400, 0x0500, 0x0600, 0x0700,
         0x0800, 0x0900, 0x1000, 0x1100, 0x1200, 0x1300, 0x1400, 0x1500,
@@ -277,7 +334,7 @@ uint16_t LR35902::DAATable[] = {
 
 LR35902::LR35902( MBC& mmu ) : _mmu( mmu ) {
     // cpu_debug = fopen( "log.txt", "w+" ) ;
-
+    opcode_cycles[ 0x76 ] = 1 ;
     currentStatus.PC = 0x0100 ;
     currentStatus.SP = 0xFFFE ;
     currentStatus.regs[ A ] = 0x01 ;
@@ -321,7 +378,7 @@ LR35902::LR35902( MBC& mmu ) : _mmu( mmu ) {
     memory[OBP1] = 0xFF ;
     memory[WY] = 0x00 ;
     memory[WX] = 0x00 ;
-    memory[ IE ] = 0x00 ;
+    memory[IE] = 0x00 ;
 }
 
 void LR35902::LogCPU( uint8_t opcode ) {
@@ -347,35 +404,22 @@ void LR35902::ExecuteCurrentInstruction() {
     uint16_t pc = CPU_PC ;
     cpc = pc ;
     cop = opcode ;
-    instC++ ;
-    if ( instC >= 291399 )
-        stackLogging = true ;
+    stackLogging = true ;
+
+    currentStatus.deltaCycle = 0 ;
+    if ( pc >= 0xC000 && pc < 0xD000 )
+        exit( 0 ) ;
 #ifdef DEBUG
     if ( stackLogging ) {
-        printf( "PC=%x opcode=%x A=%x F=%x B=%x C=%x D=%x E=%x H=%x L=%x SP=%x Z:%d N:%d H:%d C:%d\n"
-                , pc, opcode
-                , CPU_regs[ A ]
-                , CPU_regs[ F ]
-                , CPU_regs[ B ]
-                , CPU_regs[ C ]
-                , CPU_regs[ D ]
-                , CPU_regs[ E ]
-                , CPU_regs[ H ]
-                , CPU_regs[ L ]
-                , CPU_SP
-                , Get_ZeroFlag()
-                , Get_SubFlag()
-                , Get_HCFlag()
-                , Get_CFlag()
-
-        ) ;
+        printf( "[%d] AF= %x BC= %x DE=%x HL=%x SP=%x --> ", ++instC, Get_AF(), Get_BC(), Get_DE(), Get_HL(),
+                    CPU_SP ) ;
+        printf( "pc=%x opcode=%x\n", pc, opcode ) ;
     }
-
 #endif
     switch ( opcode ) {
         case 0x00 :
             /* NOP */
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         /* 8-Bit Transfer and Input/Output  */
         case 0x40 : case 0x41 : case 0x42 : case 0x43 : case 0x44 : case 0x45 : case 0x47 :
@@ -386,91 +430,91 @@ void LR35902::ExecuteCurrentInstruction() {
         case 0x68 : case 0x69 : case 0x6A : case 0x6B : case 0x6C : case 0x6D : case 0x6F :
         case 0x78 : case 0x79 : case 0x7A : case 0x7B : case 0x7C : case 0x7D : case 0x7F :
             CPU_regs[ ( opcode & 0b00111000 ) >> 3 ] = CPU_regs[ ( opcode & 0b00000111 ) ] ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0x06 : case 0x0E : case 0x16 : case 0x1E : case 0x26 : case 0x2E : case 0x3E :
             currentStatus.regs[ ( opcode & 0b00111000 ) >> 3 ] = MEMREAD(++CPU_PC) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x46 : case 0x4E : case 0x56 : case 0x5E : case 0x66 : case 0x6E : case 0x7E :
             CPU_regs[ ( opcode & 0b00111000 ) >> 3 ] = MEMREAD(Get_HL()) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x70 : case 0x71 : case 0x72 : case 0x73 : case 0x74 : case 0x75 : case 0x77 :
             MEMWRITE(Get_HL(), CPU_regs[(opcode & 0b00000111)]) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x36 :
             MEMWRITE(Get_HL(),
                      MEMREAD(++CPU_PC)
             ) ;
-            currentStatus.deltaCycle = 12 ;
+            
             break ;
         case 0x0A :
             CPU_regs[ A ] = MEMREAD(Get_BC()) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x1A :
             CPU_regs[ A ] = MEMREAD(Get_DE()) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xF2 :
             CPU_regs[ A ] = MEMREAD(0xFF00 + CPU_regs[C]) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xE2 :
             MEMWRITE(0xFF00 + CPU_regs[C], CPU_regs[A]) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xF0 :
             CPU_regs[ A ] = MEMREAD(
                     0xFF00 + MEMREAD(++CPU_PC)
             ) ;
-            currentStatus.deltaCycle = 12 ;
+            
             break ;
         case 0xE0 :
             MEMWRITE(0xFF00 + MEMREAD(++CPU_PC), CPU_regs[A]) ;
-            currentStatus.deltaCycle = 12 ;
+            
             break ;
         case 0xFA : {
             uint16_t addr = Fetch_16bitByMMU( ++CPU_PC ) ;
             CPU_regs[ A ] = MEMREAD(addr);
             ++( CPU_PC ) ;
-            currentStatus.deltaCycle = 16 ;
+            
         }   break ;
         case 0xEA : {
             uint16_t addr = Fetch_16bitByMMU( ++CPU_PC ) ;
             MEMWRITE(addr, CPU_regs[A]) ;
             ++CPU_PC ;
-            currentStatus.deltaCycle = 16 ;
+            
         }   break ;
         case 0x2A :
             CPU_regs[ A ] = MEMREAD(Get_HL()) ;
             Set_HL(static_cast<uint16_t>(Get_HL() + 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x3A :
             CPU_regs[ A ] = MEMREAD(Get_HL()) ;
             Set_HL(static_cast<uint16_t>(Get_HL() - 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x02 :
             MEMWRITE(Get_BC(), CPU_regs[A]) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x12 :
             MEMWRITE(Get_DE(), CPU_regs[A]) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x22 :
             MEMWRITE(Get_HL(), CPU_regs[A]) ;
             Set_HL( Get_HL() + 1 ) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x32 :
             MEMWRITE(Get_HL(), CPU_regs[A]) ;
             Set_HL( Get_HL() - 1 ) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
 
         /* 16-Bit Transfer Instructions */
@@ -493,82 +537,75 @@ void LR35902::ExecuteCurrentInstruction() {
             } // switch
 
             CPU_PC += 2 ;
-            currentStatus.deltaCycle = 12;
         }   break ;
         case 0xF9 :
             CPU_SP = Get_HL() ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xC5 :
             MEMWRITE(--CPU_SP, CPU_regs[B]) ;
             MEMWRITE(--CPU_SP, CPU_regs[C]) ;
-            currentStatus.deltaCycle = 16 ;
+            
             break;
         case 0xD5 :
             MEMWRITE(--CPU_SP, CPU_regs[D]) ;
             MEMWRITE(--CPU_SP, CPU_regs[E]) ;
-            currentStatus.deltaCycle = 16 ;
+            
             break;
         case 0xE5 :
             MEMWRITE(--CPU_SP, CPU_regs[H]) ;
             MEMWRITE(--CPU_SP, CPU_regs[L]) ;
-            currentStatus.deltaCycle = 16 ;
+            
             break;
         case 0xF5 :
             MEMWRITE(--CPU_SP, CPU_regs[A]) ;
             MEMWRITE(--CPU_SP, CPU_regs[F]) ;
-            currentStatus.deltaCycle = 16 ;
+            
             break;
         case 0xC1 :
             CPU_regs[ C ] = MEMREAD(CPU_SP);
             CPU_regs[ B ] = MEMREAD(++CPU_SP) ;
             ++CPU_SP ;
-            currentStatus.deltaCycle = 12 ;
+            
             break;
         case 0xD1 :
             CPU_regs[ E ] = MEMREAD(CPU_SP);
             CPU_regs[ D ] = MEMREAD(++CPU_SP) ;
-            currentStatus.deltaCycle = 12 ;
+            
             ++CPU_SP ;
             break;
         case 0xE1 :
             CPU_regs[ L ] = MEMREAD(CPU_SP);
             CPU_regs[ H ] = MEMREAD(++CPU_SP) ;
-            currentStatus.deltaCycle = 12 ;
+            
             ++CPU_SP ;
             break;
         case 0xF1 :
             CPU_regs[ F ] = MEMREAD(CPU_SP) & 0xF0 ;
             CPU_regs[ A ] = MEMREAD(++CPU_SP) ;
-            currentStatus.deltaCycle = 12 ;
+            
             ++CPU_SP ;
             break;
         case 0xF8 : {
             int8_t sOffset = static_cast<int8_t>( MEMREAD(++CPU_PC) ) ;
             uint16_t result = CPU_SP + sOffset ;
-            if ( ( CPU_SP & 0xfff ) + sOffset >= 0x1000 ) {
-                Set_HCFlag() ;
-            } // if
-            else
-                Clear_HCFlag() ;
-
-            if ( result < CPU_SP ) {
-                Set_CFlag() ;
-            } // if
-            else
-                Clear_CFlag() ;
+/*
+            if ( instC == 660756 )
+                printf( "Hit\n" ) ;
+*/
+            CPU_regs[ F ] = ((CPU_SP ^ sOffset ^ result) & 0x100 ? 0x10 : 0) | ((CPU_SP ^ sOffset ^ result) & 0x10 ? 0x20 : 0);
 
             Clear_ZeroFlag() ;
             Clear_SubFlag() ;
             Set_HL( result ) ;
-            currentStatus.deltaCycle = 12 ;
+            
         }   break ;
         case 0x08 : {
             uint16_t addr = Fetch_16bitByMMU( ++CPU_PC ) ;
             MEMWRITE( addr, static_cast<uint8_t>( CPU_SP & 0x00FF ) ) ;
             MEMWRITE( addr + 1, static_cast<uint8_t>( CPU_SP >> 8 ) ) ;
             ++ CPU_PC ;
-            currentStatus.deltaCycle = 20 ;
+            
         }   break ;
 
         /* 8-Bit Arithmetic and Logical Operation */
@@ -587,7 +624,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Clear_SubFlag();
-            currentStatus.deltaCycle = 4 ;
+            
         }   break ;
         case 0xC6 : {
             /* ADD A, imm8 */
@@ -603,7 +640,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Clear_SubFlag();
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0x86 : {
             /* ADD A, (HL) */
@@ -618,7 +655,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] < tempReg ? Set_CFlag() : Clear_CFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0x88 : case 0x89 : case 0x8A : case 0x8B : case 0x8C : case 0x8D : case 0x8F : {
             /* ADC A, r */
@@ -636,7 +673,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Clear_SubFlag();
-            currentStatus.deltaCycle = 4 ;
+            
         }   break ;
         case 0xCE : {
             /* ADC A, imm8 */
@@ -655,7 +692,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Clear_SubFlag();
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0x8E : {
             /* ADC A, (HL) */
@@ -673,7 +710,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Clear_SubFlag();
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0x90 : case 0x91 : case 0x92 : case 0x93 : case 0x94 : case 0x95 : case 0x97 : {
             /* SUB r */
@@ -687,7 +724,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
         }   break ;
         case 0xD6 : {
             /* SUB imm8 */
@@ -701,7 +738,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         } break ;
         case 0x96 : {
             /* SUB (HL) */
@@ -714,7 +751,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         } break ;
         case 0x98 : case 0x99 : case 0x9A : case 0x9B : case 0x9C : case 0x9D : case 0x9F : {
             /* SBC A, r */
@@ -729,7 +766,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
         } break ;
         case 0xDE : {
             /* SBC A, imm8 */
@@ -744,7 +781,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0x9E : {
             /* SBC A, (HL) */
@@ -760,7 +797,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0xA0 : case 0xA1 : case 0xA2 : case 0xA3 : case 0xA4 : case 0xA5 : case 0xA7 :
             /* AND r */
@@ -769,7 +806,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Set_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
         break ;
         case 0xE6 :
             /* AND imm8 */
@@ -778,7 +815,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Set_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xA6 :
             /* AND (HL) */
@@ -787,7 +824,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Set_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xB0 : case 0xB1 : case 0xB2 : case 0xB3 : case 0xB4 : case 0xB5 : case 0xB7 :
             /* OR r */
@@ -796,7 +833,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0xF6 :
             /* OR imm8 */
@@ -805,7 +842,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xB6 :
             /* OR (HL) */
@@ -814,7 +851,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xA8 : case 0xA9 : case 0xAA : case 0xAB : case 0xAC : case 0xAD : case 0xAF :
             /* XOR r */
@@ -823,7 +860,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0xEE :
             /* XOR imm8 */
@@ -832,7 +869,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xAE :
             /* XOR (HL) */
@@ -841,7 +878,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             CPU_regs[ A ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0xB8 : case 0xB9 : case 0xBA : case 0xBB : case 0xBC : case 0xBD : case 0xBF : {
             /*CP (pandoc says its just SUB without result)*/
@@ -855,7 +892,7 @@ void LR35902::ExecuteCurrentInstruction() {
             newResult == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
         }
             break ;
         case 0xFE : {
@@ -871,7 +908,7 @@ void LR35902::ExecuteCurrentInstruction() {
             newResult == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }   break;
         case 0xBE : {
             /* CP (HL) */
@@ -885,7 +922,7 @@ void LR35902::ExecuteCurrentInstruction() {
             newResult == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x04 : case 0x0C : case 0x14 : case 0x1C : case 0x24 : case 0x2C : case 0x3C : {
@@ -895,7 +932,7 @@ void LR35902::ExecuteCurrentInstruction() {
             ++ CPU_regs[ regIndex ] ;
             CPU_regs[ regIndex ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_SubFlag();
-            currentStatus.deltaCycle = 4 ;
+            
         }   break ;
         case 0x34 : {
             /* INC (HL) */
@@ -904,7 +941,7 @@ void LR35902::ExecuteCurrentInstruction() {
             MEMWRITE(Get_HL(), hl_val + 1) ;
             static_cast<uint8_t> ( hl_val + 1 ) == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 12 ;
+            
         }
             break ;
         case 0x05 : case 0x0D : case 0x15 : case 0x1D : case 0x25 : case 0x2D : case 0x3D : {
@@ -914,7 +951,7 @@ void LR35902::ExecuteCurrentInstruction() {
             -- CPU_regs[ regIndex ] ;
             CPU_regs[ regIndex ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Set_SubFlag();
-            currentStatus.deltaCycle = 4 ;
+            
         }   break ;
         case 0x35 : {
             /* DEC (HL) */
@@ -923,7 +960,7 @@ void LR35902::ExecuteCurrentInstruction() {
             MEMWRITE(Get_HL(), refHL - 1) ;
             MEMREAD(Get_HL()) == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Set_SubFlag();
-            currentStatus.deltaCycle = 12 ;
+            
         }
             break ;
         /* 16-Bit Arithmetic Operation */
@@ -942,7 +979,7 @@ void LR35902::ExecuteCurrentInstruction() {
             else
                 Clear_CFlag() ;
             Clear_SubFlag();
-            currentStatus.deltaCycle = 8 ;
+            
         } break ;
         case 0x19 : {
             /* ADD HL, DE */
@@ -959,7 +996,7 @@ void LR35902::ExecuteCurrentInstruction() {
             else
                 Clear_CFlag() ;
             Clear_SubFlag();
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0x29 : {
             /* ADD HL, HL */
@@ -976,7 +1013,7 @@ void LR35902::ExecuteCurrentInstruction() {
             else
                 Clear_CFlag() ;
             Clear_SubFlag();
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0x39 : {
             /* ADD HL, SP */
@@ -993,66 +1030,72 @@ void LR35902::ExecuteCurrentInstruction() {
             else
                 Clear_CFlag() ;
             Clear_SubFlag();
-            currentStatus.deltaCycle = 8 ;
+            
         }   break ;
         case 0xE8 : {
             /* ADD SP, r8 */
-            uint16_t tempReg = CPU_SP ;
-            if ( ( (tempReg & 0x0fff) + static_cast<uint16_t>( MEMREAD(CPU_PC + 1) ) & 0x1000 ) == 0x1000 )
+            int8_t immVal = static_cast<int8_t>( MEMREAD(CPU_PC + 1) ) ;
+            // uint32_t tempResult = CPU_SP + immVal ;
+            uint16_t result = CPU_SP + immVal ;
+
+            CPU_regs[ F ] = ((CPU_SP ^ immVal ^ result) & 0x100 ? 0x10 : 0) | ((CPU_SP ^ immVal ^ result) & 0x10 ? 0x20 : 0);
+            /*
+            if ( (CPU_SP & 0x0fff) + (immVal & 0x0fff) >= 0x1000 )
                 Set_HCFlag() ;
             else
                 Clear_HCFlag() ;
-
-            CPU_SP += MEMREAD(++CPU_PC) ;
-
-            if ( CPU_SP < tempReg )
+            */
+            CPU_SP = result ;
+/*
+            if ( tempResult > 0xFFFF )
                 Set_CFlag() ;
             else
                 Clear_CFlag() ;
-
+*/
+            ++ CPU_PC ;
             Clear_ZeroFlag() ;
             Clear_SubFlag();
-            currentStatus.deltaCycle = 16 ;
+            
         }   break ;
         case 0x03 :
             /* INC BC */
             Set_BC(static_cast<uint16_t>(Get_BC() + 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x13 :
             /* INC DE */
             Set_DE(static_cast<uint16_t>(Get_DE() + 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x23 :
             /* INC HL */
             Set_HL(static_cast<uint16_t>(Get_HL() + 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x33 :
             /* INC SP */
             ++ CPU_SP ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x0B :
             /* DEC BC */
             Set_BC(static_cast<uint16_t>(Get_BC() - 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x1B :
             /* DEC DE */
             Set_DE(static_cast<uint16_t>(Get_DE() - 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x2B :
             /* DEC HL */
             Set_HL(static_cast<uint16_t>(Get_HL() - 1)) ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
         case 0x3B :
             /* DEC SP */
             -- CPU_SP ;
-            currentStatus.deltaCycle = 8 ;
+            
             break ;
 
         /* Rotate Shift */
@@ -1066,7 +1109,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             /*diff 4*/
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0x0F :
             /* RRCA */
@@ -1078,7 +1121,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             /*diff 4*/
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0x17 : {
             /* RLA */
@@ -1089,7 +1132,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_ZeroFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
         }   break ;
         case 0x1F : {
             /* RRA */
@@ -1101,7 +1144,7 @@ void LR35902::ExecuteCurrentInstruction() {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             /*diff 4*/
-            currentStatus.deltaCycle = 4 ;
+            
         }   break ;
         /* General-Purpose Arithmetic Operations and CPU Control  */
         case 0x27 : {
@@ -1129,7 +1172,7 @@ void LR35902::ExecuteCurrentInstruction() {
             tempRegister = CPU_regs[ A ] ;
             tempRegister |= ( CPU_regs[ F ] & (0x10 | 0x20 | 0x40) ) << 4 ;
             currentStatus.Set_AF( DAATable[tempRegister] ) ;
-            currentStatus.deltaCycle = 4 ;
+            
         }
             break ;
         case 0x37 :
@@ -1137,28 +1180,27 @@ void LR35902::ExecuteCurrentInstruction() {
             Set_CFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0x2F :
             /* CPL */
             CPU_regs[ A ] = ~CPU_regs[ A ] ;
             Set_HCFlag() ;
             Set_SubFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0x3F :
             /* CCF */
             Get_CFlag() ? Clear_CFlag() : Set_CFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         /* Jump */
         case 0xC3 : {
             /* JP nn */
             CPU_PC = Fetch_16bitByMMU( ++CPU_PC ) ;
             currentStatus.pc_jumping = true ;
-            currentStatus.deltaCycle = 16;
         }   break ;
         case 0xC2 : case 0xCA : case 0xD2 : case 0xDA : {
             /* JP cc,  nn */
@@ -1166,11 +1208,11 @@ void LR35902::ExecuteCurrentInstruction() {
                 CPU_PC = Fetch_16bitByMMU( ++CPU_PC ) ;
                 currentStatus.pc_jumping = true ;
                 /*diff 16*/
-                currentStatus.deltaCycle = 16 ;
+                branched = true ;
             } // if
             else {
                 CPU_PC += 2 ;
-                currentStatus.deltaCycle = 12 ;
+                
             } // else
 
         }   break ;
@@ -1180,7 +1222,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_PC += offset ;
             currentStatus.pc_jumping = true ;
             /*diff 12*/
-            currentStatus.deltaCycle = 12 ;
+            
         }
             break ;
         case 0x20 : case 0x28 : case 0x30 : case 0x38 : {
@@ -1190,11 +1232,11 @@ void LR35902::ExecuteCurrentInstruction() {
                 CPU_PC += offset ;
                 currentStatus.pc_jumping = true ;
                 /*diff 12*/
-                currentStatus.deltaCycle = 12 ;
+                branched = true ;
             } // if
             else {
                 ++ CPU_PC ;
-                currentStatus.deltaCycle = 8 ;
+                
             } // else
 
         }   break ;
@@ -1202,7 +1244,7 @@ void LR35902::ExecuteCurrentInstruction() {
             /* JP HL */
             CPU_PC = Get_HL() ;
             currentStatus.pc_jumping = true ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         /* Call and Return */
         case 0xCD : {
@@ -1216,7 +1258,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_PC = MEMREAD( ++CPU_PC ) | ( MEMREAD( ++CPU_PC ) << 8 ) ;
 
             currentStatus.pc_jumping = true ;
-            currentStatus.deltaCycle = 24 ;
+            
         }   break ;
         case 0xC4 : case 0xCC : case 0xD4 : case 0xDC : {
             /* CALL cc, nn */
@@ -1244,11 +1286,11 @@ void LR35902::ExecuteCurrentInstruction() {
                 CPU_PC = MEMREAD( ++CPU_PC ) | ( MEMREAD( ++CPU_PC ) << 8 ) ;
                 currentStatus.pc_jumping = true ;
                 /*diff 24*/
-                currentStatus.deltaCycle = 24 ;
+                branched = true ;
             } // if
             else {
                 CPU_PC += 2 ;
-                currentStatus.deltaCycle = 12 ;
+                
             } // else
 
         }   break ;
@@ -1260,7 +1302,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_SP += 2 ;
             currentStatus.pc_jumping = true ;
             /*diff 16*/
-            currentStatus.deltaCycle = 16 ;
+            
         }   break ;
         case 0xD9 : {
             /* RETI */
@@ -1271,7 +1313,7 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_SP += 2 ;
             currentStatus.pc_jumping = true ;
             /*diff 16*/
-            currentStatus.deltaCycle = 16 ;
+            
         }   break ;
         case 0xC0 : case 0xC8 : case 0xD0 : case 0xD8 : {
             /* RET cc */
@@ -1298,11 +1340,8 @@ void LR35902::ExecuteCurrentInstruction() {
                 CPU_SP += 2 ;
                 currentStatus.pc_jumping = true ;
                 /*diff 20*/
-                currentStatus.deltaCycle = 20 ;
+                branched = true ;
             } // if
-            else
-                currentStatus.deltaCycle = 8 ;
-
         }   break ;
         case 0xC7 : case 0xCF : case 0xD7 : case 0xDF : case 0xE7 : case 0xEF : case 0xF7 : case 0xFF : {
             /* RST t */
@@ -1313,24 +1352,24 @@ void LR35902::ExecuteCurrentInstruction() {
             CPU_PC = 0x0 + ( (opcode & 0b00111000) >> 3 ) * 8 ;
             currentStatus.pc_jumping = true ;
             /*diff 16*/
-            currentStatus.deltaCycle = 16 ;
+            
         }   break ;
         case 0xF3 :
             /* DI */
             IME_delay = -2 ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0xFB :
             /* EI */
             IME_delay = 2 ;
-            currentStatus.deltaCycle = 4 ;
+            
             break ;
         case 0x10 :
             break ;
         case 0x76 :
             halting = true ;
             currentStatus.pc_jumping = true ;
-            currentStatus.deltaCycle = 4 ;
+            
             ++CPU_PC ;
             break ;
         case 0xCB :
@@ -1348,6 +1387,14 @@ void LR35902::ExecuteCurrentInstruction() {
     else
         ++ CPU_PC ;
 
+    if ( branched ) {
+        currentStatus.deltaCycle = opcode_cycles_branched[ opcode ] << 2 ;
+        branched = false ;
+    } // if
+    else if ( currentStatus.deltaCycle == 0 ) {
+        currentStatus.deltaCycle = opcode_cycles[ opcode ] << 2 ;
+    } // else
+
     if ( IME_delay < 0 ) {
         ++ IME_delay ;
         if ( IME_delay == 0 )
@@ -1358,35 +1405,14 @@ void LR35902::ExecuteCurrentInstruction() {
         if ( IME_delay == 0 )
             currentStatus.IME = true ;
     } // else if
-#ifdef DEBUG
-   // printf( "(%d)\n", currentStatus.deltaCycle ) ;
-/*
-    printf( "IME=%d", currentStatus.IME ) ;
-    printf( " LCDC=%x STAT=%x LY=%x IF=%x IE=%x ",
-            MAINMEM[ LCDC ], MAINMEM[ STAT ], MAINMEM[ LY ], MAINMEM[ 0xFF0F ], MAINMEM[ 0xFFFF ]  ) ;
-    printf( "%d\n", currentStatus.deltaCycle ) ;
-    */
-#endif
 }
 
 void LR35902::RunExtendInstruction(uint8_t opcode) {
 #ifdef DEBUG
     if ( stackLogging ) {
-        printf( "PC=%x opcode=%x A=%x F=%x B=%x C=%x D=%x E=%x H=%x L=%x SP=%x Z:%d N:%d H:%d C:%d\n", currentStatus.PC, opcode
-                , CPU_regs[ A ]
-                , CPU_regs[ F ]
-                , CPU_regs[ B ]
-                , CPU_regs[ C ]
-                , CPU_regs[ D ]
-                , CPU_regs[ E ]
-                , CPU_regs[ H ]
-                , CPU_regs[ L ]
-                , CPU_SP
-                , Get_ZeroFlag()
-                , Get_SubFlag()
-                , Get_HCFlag()
-                , Get_CFlag()
-        ) ;
+        printf( "AF= %x BC= %x DE=%x HL=%x SP=%x --> ", Get_AF(), Get_BC(), Get_DE(), Get_HL(),
+                CPU_SP ) ;
+        printf( "pc=%x opcode=%x\n", CPU_PC, opcode ) ;
     }
 
 #endif
@@ -1414,8 +1440,6 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_SubFlag() ;
 
             ( target & mask ) == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-
-            currentStatus.deltaCycle = isHL ? 16 : 8 ; /* offical->12 */
         }
             break ;
         case 0x00 : case 0x01 : case 0x02 : case 0x03 : case 0x04 : case 0x05 : case 0x07 :
@@ -1433,7 +1457,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_SubFlag() ;
             currentStatus.regs[ regNum ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x06 : {
@@ -1448,7 +1472,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_SubFlag() ;
             newValue == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x08 : case 0x09 : case 0x0A : case 0x0B : case 0x0C : case 0x0D : case 0x0F :
@@ -1464,7 +1488,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_SubFlag() ;
             currentStatus.regs[ regNum ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x0E : {
@@ -1479,7 +1503,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_SubFlag() ;
             newValue == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
 
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x10 : case 0x11 : case 0x12 : case 0x13 : case 0x14 : case 0x15 : case 0x17 :
@@ -1501,7 +1525,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
 
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x16 : {
@@ -1522,7 +1546,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
 
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x18 : case 0x19 : case 0x1A : case 0x1B : case 0x1C : case 0x1D : case 0x1F :
@@ -1546,7 +1570,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_SubFlag() ;
 
             /*diff 8*/
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x1E : {
@@ -1567,7 +1591,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
 
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x20 : case 0x21 : case 0x22 : case 0x23 : case 0x24 : case 0x25 : case 0x27 : {
@@ -1578,7 +1602,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             currentStatus.regs[ regNum ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x26 : {
@@ -1591,7 +1615,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             newValue == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x28 : case 0x29 : case 0x2A : case 0x2B : case 0x2C : case 0x2D : case 0x2F :
@@ -1605,7 +1629,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             currentStatus.regs[ regNum ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x2E : {
@@ -1618,7 +1642,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             newValue == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x30 : case 0x31 : case 0x32 : case 0x33 : case 0x34 : case 0x35 : case 0x37 : {
@@ -1630,7 +1654,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             currentStatus.regs[ regNum ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x36 : {
@@ -1642,7 +1666,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             Clear_HCFlag() ;
             Clear_SubFlag() ;
             newValue == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x38 : case 0x39 : case 0x3A : case 0x3B : case 0x3C : case 0x3D : case 0x3F : {
@@ -1653,7 +1677,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             currentStatus.regs[ regNum ] == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x3E : {
@@ -1666,7 +1690,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             newValue == 0 ? Set_ZeroFlag() : Clear_ZeroFlag() ;
             Clear_HCFlag() ;
             Clear_SubFlag() ;
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0x80 : case 0x81 : case 0x82 : case 0x83 : case 0x84 : case 0x85 : case 0x87 :
@@ -1683,7 +1707,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             uint8_t regNum = opcode & 0b00000111 ;
 
             currentStatus.regs[ regNum ] &= mask ;
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0x86 : case 0x8E : case 0x96 : case 0x9E : case 0xA6 : case 0xAE : case 0xB6 : case 0xBE : {
@@ -1692,7 +1716,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             uint8_t memValue = MEMREAD( Get_HL() ) ;
             memValue &= mask ;
             MEMWRITE( Get_HL(), memValue ) ;
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         case 0xC0 : case 0xC1 : case 0xC2 : case 0xC3 : case 0xC4 : case 0xC5 : case 0xC7 :
@@ -1709,7 +1733,7 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             uint8_t regNum = opcode & 0b00000111 ;
 
             currentStatus.regs[ regNum ] |= mask ;
-            currentStatus.deltaCycle = 8 ;
+            
         }
             break ;
         case 0xC6 : case 0xCE : case 0xD6 : case 0xDE : case 0xE6 : case 0xEE : case 0xF6 : case 0xFE : {
@@ -1718,13 +1742,15 @@ void LR35902::RunExtendInstruction(uint8_t opcode) {
             uint8_t memValue = MEMREAD( Get_HL() ) ;
             memValue |= mask ;
             MEMWRITE( Get_HL(), memValue ) ;
-            currentStatus.deltaCycle = 16 ;
+            
         }
             break ;
         default:
             printf( "Unknown opcode(in extend): 0x%x at 0x%x\n", opcode, CPU_PC ) ;
             exit( UNKNOWN_OPCODE ) ;
     } // switch
+
+    currentStatus.deltaCycle = opcode_cycles_cb[ opcode ] << 2 ;
 }
 
 void LR35902::CheckInterrupts() {

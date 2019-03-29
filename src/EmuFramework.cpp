@@ -37,7 +37,7 @@ void EmuFramework::InitSDL_TextureWindow(const char *winName) {
     } // if
     else {
         emuWin = SDL_CreateWindow( winName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                gbLCD_X*3, gbLCD_Y*3, SDL_WINDOW_SHOWN ) ;
+                gbLCD_X*4, gbLCD_Y*4, SDL_WINDOW_SHOWN ) ;
         if( emuWin == NULL ) {
             std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl ;
         } // if

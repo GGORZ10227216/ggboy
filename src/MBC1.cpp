@@ -62,8 +62,11 @@ uint8_t MBC1::ReadMemory(const uint16_t addr) {
         } // if
 
         //
-        //printf( "padReg: %x inputState: %x realState: %x\n", mainMemory[ 0xff00 ], EmuFramework::inputStatus, realStatus ) ;
-        return realStatus ;
+        // printf( "padReg: %x inputState: %x realState: %x\n", mainMemory[ 0xff00 ], EmuFramework::inputStatus, realStatus ) ;
+        // return realStatus ;
+        // printf( "%x\n", autoKey[ inputIndex ] ) ;
+        inputIndex = (inputIndex + 1) % 9 ;
+        return autoKey[ inputIndex ];
     } // if
     else
         return mainMemory[ addr ] ;
@@ -121,7 +124,7 @@ void MBC1::WriteMemory(const uint16_t addr, const uint8_t value) {
 /*
         if ( addr == 0xff43 )
             printf( "PC=%x opcode=%x %x\n", LR35902::cpc, LR35902::cop, value ) ;
-*/
+            */
         mainMemory[ addr ] = value ;
     } // else
 }
