@@ -65,8 +65,8 @@ uint8_t MBC1::ReadMemory(const uint16_t addr) {
         // printf( "padReg: %x inputState: %x realState: %x\n", mainMemory[ 0xff00 ], EmuFramework::inputStatus, realStatus ) ;
         // return realStatus ;
         // printf( "%x\n", autoKey[ inputIndex ] ) ;
-        inputIndex = (inputIndex + 1) % 9 ;
-        return autoKey[ inputIndex ];
+        // inputIndex = (inputIndex + 1) % 9 ;
+        return realStatus ;
     } // if
     else
         return mainMemory[ addr ] ;

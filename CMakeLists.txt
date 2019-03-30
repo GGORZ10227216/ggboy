@@ -14,7 +14,7 @@ set(SOURCE_FILES ./src/cpu.cpp
 include_directories(${HEADER_FILES})
 
 INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS})
-add_definitions( "-DDEBUG" )
+add_definitions( "-DNDEBUG" )
 
 add_executable(cpu main.cpp ${SOURCE_FILES})
 TARGET_LINK_LIBRARIES(cpu -lSDL2main -lSDL2)

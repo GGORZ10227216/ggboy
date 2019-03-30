@@ -1227,16 +1227,16 @@ void LR35902::ExecuteCurrentInstruction() {
             break ;
         case 0x20 : case 0x28 : case 0x30 : case 0x38 : {
             /* JR cc, e */
-            int8_t offset = static_cast<int8_t>( MEMREAD(CPU_PC + 1) ) + 2 ;
             if ( GetJumpCondition( opcode ) ) {
-                CPU_PC += offset ;
+                int8_t offset = static_cast<int8_t> ( MEMREAD(CPU_PC + 1) ) ;
+
+                CPU_PC += offset + 2 ;
                 currentStatus.pc_jumping = true ;
                 /*diff 12*/
                 branched = true ;
             } // if
             else {
                 ++ CPU_PC ;
-                
             } // else
 
         }   break ;
@@ -1763,8 +1763,10 @@ void LR35902::CheckInterrupts() {
 
         uint8_t irtE = mainMem[ IE ] ;
         for ( int i = 0 ; i < 5 ; ++i ) {
-            if ( TEST_BIT( irtF, i ) && TEST_BIT( irtE, i ) )
+            if ( TEST_BIT( irtF, i ) && TEST_BIT( irtE, i ) ) {
                 DoInterrupt( i ) ;
+                return ;
+            } // if
         } // for
     } // if
 }
