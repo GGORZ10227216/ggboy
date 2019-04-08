@@ -150,7 +150,7 @@ void EmuFramework::StartEmu() {
     InitSDL_TextureWindow( cartridge->getRomName().c_str() ) ;
     Render = &(EmuFramework::RenderSDL_Texture) ;
 
-    // mmu->Debug_ReadMemDump( "/home/orzgg/CLionProjects/cpu/galaga_all.dump" ) ; // For Graphics debug
+    // mmu->Debug_ReadMemDump( "/home/orzgg/CLionProjects/cpu/Zelda.dump" ) ; // For Graphics debug
     //mmu->Debug_ReadBIOS( "/home/orzgg/CLionProjects/cpu/bios.gb" ) ;
 
     int i = 0 ;
