@@ -11,6 +11,7 @@
 #include <sstream>
 #include <Cartridge.h>
 
+
 std::unique_ptr<MBC> EmuFramework::mmu ;
 EmuFramework::RenderMethod EmuFramework::Render = nullptr ;
 uint8_t* EmuFramework::frameBuffer = nullptr ;
@@ -25,6 +26,13 @@ uint64_t EmuFramework::now = 0 ;
 bool EmuFramework::running = true ;
 SDL_Event EmuFramework::e ;
 uint8_t EmuFramework::inputStatus = 0 ;
+Stereo_Buffer EmuFramework::buf;
+blip_sample_t EmuFramework::out_buf [EmuFramework::out_size] ;
+Sound_Queue EmuFramework::sound;
+int EmuFramework::speed = 0 ;
+
+Uint8* EmuFramework::audio_pos; // global pointer to the audio buffer to be played
+Uint32 EmuFramework::audio_len; // remaining length of the sample we have to play
 
 EmuFramework::EmuFramework(  int argc, char* argv[]  )  :
     _argc( argc ), _argv( argv ) {
@@ -32,7 +40,7 @@ EmuFramework::EmuFramework(  int argc, char* argv[]  )  :
 }
 
 void EmuFramework::InitSDL_TextureWindow(const char *winName) {
-    if ( SDL_Init( SDL_INIT_VIDEO ) ) {
+    if ( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO ) ) {
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl ;
     } // if
     else {
@@ -89,32 +97,57 @@ void EmuFramework::UI_EventPolling(bool &running) {
         keyboardStatus[ SDL_SCANCODE_RSHIFT ] ? inputStatus |= SEL : inputStatus &= ~SEL ;
         keyboardStatus[ SDL_SCANCODE_Z ] ? inputStatus |= A : inputStatus &= ~A ;
         keyboardStatus[ SDL_SCANCODE_X ] ? inputStatus |= B : inputStatus &= ~B ;
-/*
-        if ( keyboardStatus[ SDL_SCANCODE_UP ] ) {
-            MAINMEM[ SCX ] ++ ;
-            printf( "SCX: %x\n", MAINMEM[ SCX ] ) ;
+
+        if ( keyboardStatus[ SDL_SCANCODE_A ] ) {
+            speed += 500 ;
         } // if
-        if ( keyboardStatus[ SDL_SCANCODE_DOWN ] ) {
-            MAINMEM[ SCX ] -- ;
-            printf( "SCX: %x\n", MAINMEM[ SCX ] ) ;
+        if ( keyboardStatus[ SDL_SCANCODE_S ] ) {
+            speed -= 500 ;
         } // if
-        */
+
     } // while
 
     // printf( "%x\n", inputStatus ) ;
 }
+/*
+void my_audio_callback(void *userdata, Uint8 *stream, int len) {
 
+    if (audio_len ==0)
+        return;
+
+    len = ( len > audio_len ? audio_len : len );
+    //SDL_memcpy (stream, audio_pos, len); 					// simply copy from one buffer into the other
+    SDL_MixAudio(stream, audio_pos, len, SDL_MIX_MAXVOLUME);// mix from one buffer into another
+
+    audio_pos += len;
+    audio_len -= len;
+}
+*/
 void EmuFramework::RenderSDL_Texture() {
+
     SDL_UpdateTexture( frame, NULL, frameBuffer, gbLCD_X * 4 ) ;
     SDL_RenderCopy( renderer, frame, NULL, NULL ) ;
     SDL_RenderPresent( renderer ) ;
 
+    bool stereo = mmu->apu.end_frame( 68000 );
+    buf.end_frame( 68000, stereo );
+
+    if ( buf.samples_avail() >= out_size ) {
+        size_t count = buf.read_samples(out_buf, out_size);
+        sound.write(out_buf, count);
+    } // if
+
+    mmu->cpu_time = 0;
+
     now = SDL_GetPerformanceCounter() ;
+
     double fix = (double)((now - last)*1000000) / SDL_GetPerformanceFrequency() ;
 
-    int64_t delayT = 16000 - static_cast<int>(fix) ;
+    int64_t delayT = 16000 - static_cast<int>(fix) + speed ;
     if ( delayT > 0 )
         usleep( delayT ) ;
+    else
+        printf( "delay: %ld\n", delayT ) ;
 
     last = SDL_GetPerformanceCounter() ;
 
@@ -145,12 +178,23 @@ void EmuFramework::StartEmu() {
     cpu = new LR35902( *mmu ) ;
 
     frameBuffer = new uint8_t[ gbLCD_X * gbLCD_Y * 4 ] ;
-    lcd = new LCD_Controller( frameBuffer ) ;
+    lcd = new LCD_Controller( frameBuffer, mmu->getMainMemory() ) ;
 
     InitSDL_TextureWindow( cartridge->getRomName().c_str() ) ;
     Render = &(EmuFramework::RenderSDL_Texture) ;
 
-    // mmu->Debug_ReadMemDump( "/home/orzgg/CLionProjects/cpu/Zelda.dump" ) ; // For Graphics debug
+    blargg_err_t error = buf.set_sample_rate( 48000, 1000 );
+    if ( error ) {
+        std::cout << "APU error!!" << std::endl ;
+        StopEmu() ;
+        return ;
+    } // if
+
+    sound.start( 48000, 2 ) ;
+    buf.clock_rate( 4194304 );
+    mmu->apu.output( buf.center(), buf.left(), buf.right() );
+
+    // mmu->Debug_ReadMemDump( "/home/orzgg/CLionProjects/cpu/Dracula.dump" ) ; // For Graphics debug
     //mmu->Debug_ReadBIOS( "/home/orzgg/CLionProjects/cpu/bios.gb" ) ;
 
     int i = 0 ;

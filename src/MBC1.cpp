@@ -27,12 +27,13 @@ MBC1::MBC1(Cartridge* rom) : MBC (rom) {
 }
 
 uint8_t MBC1::ReadMemory(const uint16_t addr) {
-    if ( ( addr >= ROM_SWAP_BEG ) && ( addr < ROM_SWAP_END ) ) {
+    if ( ( addr >= ROM_SWAP_BEG ) && ( addr <= ROM_SWAP_END ) ) {
         uint32_t fixedAddr = addr - ROM_SWAP_BEG + romBankSize * ( currentRomBank - 1 );
         return romBanks[ fixedAddr ] ;
     } // if
     else if ( ( addr >= EXT_RAM_BEG ) && ( addr <= EXT_RAM_END ) ) {
         uint32_t fixedAddr  = addr - EXT_RAM_BEG + currentRamBank * ramBankSize ;
+
         return ramBanks[ fixedAddr ] ;
     } // else if
     if ( addr == 0xff00 ) {
@@ -65,9 +66,12 @@ uint8_t MBC1::ReadMemory(const uint16_t addr) {
         // printf( "padReg: %x inputState: %x realState: %x\n", mainMemory[ 0xff00 ], EmuFramework::inputStatus, realStatus ) ;
         // return realStatus ;
         // printf( "%x\n", autoKey[ inputIndex ] ) ;
-        // inputIndex = (inputIndex + 1) % 9 ;
+        // realStatus = autoKey[ inputIndex ] ;
+        // inputIndex = (inputIndex + 1) % 7 ;
         return realStatus ;
     } // if
+    else if ( addr >= apu.start_addr && addr <= apu.end_addr )
+        return apu.read_register( cpu_time, addr );
     else
         return mainMemory[ addr ] ;
 }
@@ -119,12 +123,10 @@ void MBC1::WriteMemory(const uint16_t addr, const uint8_t value) {
     else if ( addr == 0xFF46 ) {
         DMA_Write( value ) ;
     } // else if
+    else if ( addr >= apu.start_addr && addr <= apu.end_addr )
+        apu.write_register( cpu_time, addr, value );
     else {
         // no control needed over this area so write to memory
-/*
-        if ( addr == 0xff43 )
-            printf( "PC=%x opcode=%x %x\n", LR35902::cpc, LR35902::cop, value ) ;
-            */
         mainMemory[ addr ] = value ;
     } // else
 }

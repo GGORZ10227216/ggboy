@@ -51,6 +51,8 @@ void MBC::WriteMemory(const uint16_t addr, const uint8_t value) {
     } // else if
     else {
         // no control needed over this area so write to memory
+        if ( addr >= 0xff10 && addr <= 0xff3f )
+            apu.write_register( cpu_time, addr, value );
         /*
         if ( addr == 0xffff ) {
             if ( value & 0b00000001 )
@@ -111,6 +113,8 @@ uint8_t MBC::ReadMemory(const uint16_t addr) {
 
         return realStatus ;
     } // else if
+    else if ( addr >= 0xff10 && addr <= 0xff3f )
+        return apu.read_register( cpu_time, addr );
     else
         return mainMemory[ addr ] ;
 }

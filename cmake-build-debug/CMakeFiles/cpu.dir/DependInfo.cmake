@@ -4,6 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/Sound_Queue.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/Gb_Snd_Emu/Sound_Queue.cpp.o"
+  "/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Blip_Buffer.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/Gb_Snd_Emu/gb_apu/Blip_Buffer.cpp.o"
+  "/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Gb_Apu.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/Gb_Snd_Emu/gb_apu/Gb_Apu.cpp.o"
+  "/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Gb_Oscs.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/Gb_Snd_Emu/gb_apu/Gb_Oscs.cpp.o"
+  "/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Multi_Buffer.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/Gb_Snd_Emu/gb_apu/Multi_Buffer.cpp.o"
   "/home/orzgg/CLionProjects/cpu/main.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/main.cpp.o"
   "/home/orzgg/CLionProjects/cpu/src/CPU_status.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/src/CPU_status.cpp.o"
   "/home/orzgg/CLionProjects/cpu/src/Cartridge.cpp" "/home/orzgg/CLionProjects/cpu/cmake-build-debug/CMakeFiles/cpu.dir/src/Cartridge.cpp.o"
@@ -24,6 +29,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   ".././include"
+  ".././Gb_Snd_Emu/gb_apu"
+  ".././Gb_Snd_Emu"
   )
 
 # Targets to which this target links.

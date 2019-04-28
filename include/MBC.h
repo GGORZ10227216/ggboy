@@ -4,6 +4,8 @@
 
 #include <stdint.h>
 #include <Cartridge.h>
+#include "gb_apu/Gb_Apu.h"
+#include "gb_apu/Multi_Buffer.h"
 
 #ifndef CPU_MMU_H
 #define CPU_MMU_H
@@ -47,12 +49,13 @@ namespace lr35902 {
         uint8_t* mainMemory = nullptr ;
     public:
         virtual uint8_t *getMainMemory() const;
+        int cpu_time ;
+        Gb_Apu apu ;
         void Debug_ReadMemDump( char* dumpFilePath ) ;
         void Debug_ReadBIOS( char* dumpFilePath ) ;
     protected:
 
         void DMA_Write( uint8_t addr ) ;
-
         uint8_t currentRomBank = 1 ;
     public:
         uint8_t getCurrentRomBank() const;

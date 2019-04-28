@@ -13,14 +13,17 @@
 class LCD_Controller {
 public :
     LCD_Controller() = delete ;
-    LCD_Controller(uint8_t* frameBuffer) ;
+    LCD_Controller(uint8_t* frameBuffer, uint8_t* memptr) ;
 
     inline bool LCD_IsOn() { return LCDC & ( 1 << 7 ) ; }
     void Update( uint8_t instructionCycle ) ;
     void RenderToBuffer() ;
+    void RenderSprites() ;
+
     int16_t cycle_scanCounter = 456 ;
 private :
     uint8_t* _frameBuffer ;
+    uint8_t* mainMemoryPtr = nullptr ;
 
     uint8_t& LCDC, &STAT, &SCY, &SCX, &LY, &LYC ;
     uint8_t& BGP, &OBP0, &OBP1, &WY, &WX ;

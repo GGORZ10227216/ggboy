@@ -36,6 +36,8 @@
 				<Compiler>
 					<Add option="-DNDEBUG"/>
 					<Add directory="/home/orzgg/CLionProjects/cpu/./include"/>
+					<Add directory="/home/orzgg/CLionProjects/cpu/./Gb_Snd_Emu/gb_apu"/>
+					<Add directory="/home/orzgg/CLionProjects/cpu/./Gb_Snd_Emu"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -61,6 +63,8 @@
 				<Compiler>
 					<Add option="-DNDEBUG"/>
 					<Add directory="/home/orzgg/CLionProjects/cpu/./include"/>
+					<Add directory="/home/orzgg/CLionProjects/cpu/./Gb_Snd_Emu/gb_apu"/>
+					<Add directory="/home/orzgg/CLionProjects/cpu/./Gb_Snd_Emu"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -88,34 +92,34 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/Cartridge.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/Sound_Queue.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/EmuFramework.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/Sound_Queue.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/LCD_Controller.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Blip_Buffer.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Blip_Buffer.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC1.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Gb_Apu.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC2.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Gb_Apu.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/MBC_header.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Gb_Oscs.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/catch.hpp">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Gb_Oscs.h">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/cpu_state.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Multi_Buffer.cpp">
 			<Option target="cpu"/>
 		</Unit>
-		<Unit filename="/home/orzgg/CLionProjects/cpu/include/errorCode.h">
+		<Unit filename="/home/orzgg/CLionProjects/cpu/Gb_Snd_Emu/gb_apu/Multi_Buffer.h">
 			<Option target="cpu"/>
 		</Unit>
 		<Unit filename="/home/orzgg/CLionProjects/cpu/main.cpp">

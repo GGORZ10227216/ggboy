@@ -7,7 +7,9 @@
 #include <string>
 #include <Cartridge.h>
 #include <LCD_Controller.h>
-
+#include <Gb_Apu.h>
+#include <Multi_Buffer.h>
+#include <Sound_Queue.h>
 #include <SDL2/SDL.h>
 
 #ifndef CPU_EMUFRAMEWORK_H
@@ -91,6 +93,15 @@ private :
     const static uint32_t cpuSpeed = 4194304 ;
     const static uint8_t gbLCD_X = 160 ;
     const static uint8_t gbLCD_Y = 144 ;
+
+    static Stereo_Buffer buf;
+    enum { out_size = 4096 };
+    static blip_sample_t out_buf [out_size];
+    static void my_audio_callback(void *userdata, Uint8 *stream, int len);
+    static int speed ;
+    static Sound_Queue sound;
+    static Uint8 *audio_pos; // global pointer to the audio buffer to be played
+    static Uint32 audio_len; // remaining length of the sample we have to play
 };
 
 #define MAINMEM EmuFramework::GetMMU().getMainMemory()

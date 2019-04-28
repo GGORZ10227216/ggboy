@@ -402,13 +402,13 @@ void LR35902::LogCPU( uint8_t opcode ) {
 void LR35902::ExecuteCurrentInstruction() {
     uint8_t opcode = MEMREAD(CPU_PC) ;
     uint16_t pc = CPU_PC ;
+
     cpc = pc ;
     cop = opcode ;
     stackLogging = true ;
 
     currentStatus.deltaCycle = 0 ;
-    if ( pc >= 0xC000 && pc < 0xD000 )
-        exit( 0 ) ;
+
 #ifdef DEBUG
     if ( stackLogging ) {
         printf( "[%d] AF= %x BC= %x DE=%x HL=%x SP=%x --> ", ++instC, Get_AF(), Get_BC(), Get_DE(), Get_HL(),
@@ -1405,6 +1405,8 @@ void LR35902::ExecuteCurrentInstruction() {
         if ( IME_delay == 0 )
             currentStatus.IME = true ;
     } // else if
+
+    _mmu.cpu_time += currentStatus.deltaCycle ;
 }
 
 void LR35902::RunExtendInstruction(uint8_t opcode) {
