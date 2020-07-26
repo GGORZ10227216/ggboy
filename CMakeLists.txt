@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.12)
-project(cpu)
+cmake_minimum_required(VERSION 3.10)
+project(ggboy)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -21,5 +21,5 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_FLAGS "-Ofast -flto")
 set(CMAKE_BUILD_TYPE Release)
 
-add_executable(cpu main.cpp ${EmuSrc} ${AudioSrc})
-TARGET_LINK_LIBRARIES(cpu -lSDL2main -lSDL2)
+add_executable(ggboy main.cpp ${EmuSrc} ${AudioSrc})
+TARGET_LINK_LIBRARIES(ggboy -lSDL2main -lSDL2)

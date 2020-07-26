@@ -30,40 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80a25f49-ec7b-42fc-9d80-e2a4fb4ce06a" name="Default Changelist" comment="Fix cpu_instrs.gb test#03 failed.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris.gb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cpu.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpu.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,8 +75,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/StreetFighterII.gb" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -253,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1549507476624</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fix &quot;JR e&quot; instruction bug:&#10;&#10;  &quot;JR e&quot; instruction was using a errored offset calculate method :&#10;    &#10;    t8_t offset = memread( PC ) + 2 ; // !! overflow here!&#10;    PC += offset ;&#10;    &#10;  As above mentioned, offset will overflow when memread(PC) is greater than 0xFD.&#10;  &#10;  This bug will e game &lt;&lt;Kirby's Dream Land&gt;&gt; behave abnormally.&#10;  &#10;  Simply change the calculation order to:  &#10;  &#10;    t8_t offset = memread( PC ) ; // !! overflow here!&#10;    PC = PC + offset + 2 ;&#10;    &#10;  solve the problem.">
+      <created>1595776551761</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1595776551762</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -313,13 +290,18 @@
     <MESSAGE value="Fix a randomly happen bug in graphics emulation&#10;&#10;From game galaga, I discovered a strange behavior: sometime a sprite's&#10;X axis can exceed 160.&#10;&#10;This illegal x value will generate a wrong pixel address that exceed&#10;framebuffer's size, and write palette value to references of system &#10;register( the end address of framebuffer and ref address of sysReg are&#10;very close!! )&#10;&#10;Finally, when the sysReg's address are ruined, it will lead to incorrect&#10;graphics glitches or just seg fault." />
     <MESSAGE value="Zelda fix#2" />
     <MESSAGE value="Fix cpu_instrs.gb test#03 failed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix cpu_instrs.gb test#03 failed." />
+    <MESSAGE value="Fix &quot;JR e&quot; instruction bug:&#10;&#10;  &quot;JR e&quot; instruction was using a errored offset calculate method :&#10;    &#10;    t8_t offset = memread( PC ) + 2 ; // !! overflow here!&#10;    PC += offset ;&#10;    &#10;  As above mentioned, offset will overflow when memread(PC) is greater than 0xFD.&#10;  &#10;  This bug will e game &lt;&lt;Kirby's Dream Land&gt;&gt; behave abnormally.&#10;  &#10;  Simply change the calculation order to:  &#10;  &#10;    t8_t offset = memread( PC ) ; // !! overflow here!&#10;    PC = PC + offset + 2 ;&#10;    &#10;  solve the problem." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix &quot;JR e&quot; instruction bug:&#10;&#10;  &quot;JR e&quot; instruction was using a errored offset calculate method :&#10;    &#10;    t8_t offset = memread( PC ) + 2 ; // !! overflow here!&#10;    PC += offset ;&#10;    &#10;  As above mentioned, offset will overflow when memread(PC) is greater than 0xFD.&#10;  &#10;  This bug will e game &lt;&lt;Kirby's Dream Land&gt;&gt; behave abnormally.&#10;  &#10;  Simply change the calculation order to:  &#10;  &#10;    t8_t offset = memread( PC ) ; // !! overflow here!&#10;    PC = PC + offset + 2 ;&#10;    &#10;  solve the problem." />
   </component>
   <component name="WindowStateProjectService">
     <state x="2371" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595775417579">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2371" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1595775417579" />
+    <state x="2781" y="72" width="912" height="904" key="CommitChangelistDialog2" timestamp="1595776551682">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2781" y="72" width="912" height="904" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1595776551682" />
     <state x="2696" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1595775416733">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -340,6 +322,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1807" height="277" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1595775704973" />
+    <state x="2508" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1595776567054">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2508" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1595776567054" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
