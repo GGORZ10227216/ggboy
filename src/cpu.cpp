@@ -1218,11 +1218,10 @@ void LR35902::ExecuteCurrentInstruction() {
         }   break ;
         case 0x18 : {
             /* JR e */
-            int8_t offset = static_cast<int8_t>( MEMREAD(CPU_PC + 1) ) + 2 ;
-            CPU_PC += offset ;
+            int8_t offset = static_cast<int8_t>( MEMREAD(CPU_PC + 1) ) ;
+            CPU_PC = CPU_PC + offset + 2 ;
             currentStatus.pc_jumping = true ;
             /*diff 12*/
-            
         }
             break ;
         case 0x20 : case 0x28 : case 0x30 : case 0x38 : {
